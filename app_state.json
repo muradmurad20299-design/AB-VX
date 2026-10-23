@@ -1,0 +1,2727 @@
+{
+  "app_name": "المدقق الذكي",
+  "app_name_en": "Smart Auditor",
+  "version": "2.0",
+  "state_file": "app_state.json",
+  "created_at": "2026-10-11 21:46:46",
+  "update_count": 2239,
+  "stats": {
+    "audits": 58,
+    "analyses": 1,
+    "chats": 4
+  },
+  "history": [
+    {
+      "time": "2026-10-21 21:39:08",
+      "type": "models_refresh",
+      "details": {
+        "ok": false,
+        "url": "http://127.0.0.1:11434",
+        "error": "HTTPConnectionPool(host='127.0.0.1', port=11434): Read timed out. (read timeout=8)"
+      }
+    },
+    {
+      "time": "2026-10-21 21:39:08",
+      "type": "models_refresh",
+      "details": {
+        "ok": false,
+        "url": "http://127.0.0.1:11434",
+        "error": "HTTPConnectionPool(host='127.0.0.1', port=11434): Read timed out. (read timeout=8)"
+      }
+    },
+    {
+      "time": "2026-10-21 21:39:08",
+      "type": "models_refresh",
+      "details": {
+        "ok": false,
+        "url": "http://127.0.0.1:11434",
+        "error": "HTTPConnectionPool(host='127.0.0.1', port=11434): Read timed out. (read timeout=8)"
+      }
+    },
+    {
+      "time": "2026-10-21 21:39:09",
+      "type": "models_refresh",
+      "details": {
+        "ok": true,
+        "url": "http://127.0.0.1:11434",
+        "count": 4
+      }
+    },
+    {
+      "time": "2026-10-21 21:39:09",
+      "type": "models_refresh",
+      "details": {
+        "ok": true,
+        "url": "http://127.0.0.1:11434",
+        "count": 4
+      }
+    },
+    {
+      "time": "2026-10-21 21:39:09",
+      "type": "models_refresh",
+      "details": {
+        "ok": true,
+        "url": "http://127.0.0.1:11434",
+        "count": 4
+      }
+    },
+    {
+      "time": "2026-10-21 21:39:10",
+      "type": "models_refresh",
+      "details": {
+        "ok": true,
+        "url": "http://127.0.0.1:11434",
+        "count": 4
+      }
+    },
+    {
+      "time": "2026-10-21 21:39:15",
+      "type": "ui_client_connected",
+      "details": {
+        "protocol": "http:"
+      }
+    },
+    {
+      "time": "2026-10-21 21:39:16",
+      "type": "models_refresh",
+      "details": {
+        "ok": true,
+        "url": "http://127.0.0.1:11434",
+        "count": 4
+      }
+    },
+    {
+      "time": "2026-10-21 21:39:19",
+      "type": "ui_view_change",
+      "details": {
+        "view": "upload"
+      }
+    },
+    {
+      "time": "2026-10-21 21:39:41",
+      "type": "audit_run",
+      "details": {
+        "filename": "سجل المدفوعات اليومية 2025.xlsx",
+        "records": 1269,
+        "risk": 44,
+        "findings": {
+          "LED_DUPLICATE_PAYMENTS": 28,
+          "LED_NEGATIVE_AMOUNTS": 25,
+          "LED_STAT_OUTLIERS": 40,
+          "LED_SPLIT_PURCHASES": 36,
+          "LED_BELOW_THRESHOLD": 2,
+          "LED_YEAR_END": 40,
+          "LED_ZERO_AMOUNTS": 13,
+          "LED_ROUND_AMOUNTS": 5,
+          "high_count": 2,
+          "medium_count": 3,
+          "low_count": 3
+        }
+      }
+    },
+    {
+      "time": "2026-10-21 21:39:42",
+      "type": "ui_view_change",
+      "details": {
+        "view": "dashboard"
+      }
+    },
+    {
+      "time": "2026-10-22 08:01:52",
+      "type": "server_started",
+      "details": {
+        "host": "0.0.0.0",
+        "port": 8000,
+        "pid": 21384,
+        "lan_urls": [
+          "10.75.14.57"
+        ]
+      }
+    },
+    {
+      "time": "2026-10-22 08:02:11",
+      "type": "ui_client_connected",
+      "details": {
+        "protocol": "file:"
+      }
+    },
+    {
+      "time": "2026-10-22 08:02:11",
+      "type": "models_refresh",
+      "details": {
+        "ok": true,
+        "url": "http://127.0.0.1:11434",
+        "count": 4
+      }
+    },
+    {
+      "time": "2026-10-22 08:02:13",
+      "type": "ui_view_change",
+      "details": {
+        "view": "upload"
+      }
+    },
+    {
+      "time": "2026-10-22 08:02:17",
+      "type": "audit_run",
+      "details": {
+        "filename": "سجل المدفوعات اليومية 2025.xlsx",
+        "records": 1269,
+        "risk": 44,
+        "findings": {
+          "LED_DUPLICATE_PAYMENTS": 28,
+          "LED_NEGATIVE_AMOUNTS": 25,
+          "LED_STAT_OUTLIERS": 40,
+          "LED_SPLIT_PURCHASES": 36,
+          "LED_BELOW_THRESHOLD": 2,
+          "LED_YEAR_END": 40,
+          "LED_ZERO_AMOUNTS": 13,
+          "LED_ROUND_AMOUNTS": 5,
+          "high_count": 2,
+          "medium_count": 3,
+          "low_count": 3
+        }
+      }
+    },
+    {
+      "time": "2026-10-22 08:02:17",
+      "type": "ui_view_change",
+      "details": {
+        "view": "dashboard"
+      }
+    },
+    {
+      "time": "2026-10-22 08:03:33",
+      "type": "ui_client_connected",
+      "details": {
+        "protocol": "http:"
+      }
+    },
+    {
+      "time": "2026-10-22 08:03:33",
+      "type": "models_refresh",
+      "details": {
+        "ok": true,
+        "url": "http://127.0.0.1:11434",
+        "count": 4
+      }
+    },
+    {
+      "time": "2026-10-22 08:03:36",
+      "type": "ui_view_change",
+      "details": {
+        "view": "upload"
+      }
+    },
+    {
+      "time": "2026-10-22 08:03:59",
+      "type": "audit_run",
+      "details": {
+        "filename": "سجل المدفوعات اليومية 2025.xlsx",
+        "records": 1269,
+        "risk": 44,
+        "findings": {
+          "LED_DUPLICATE_PAYMENTS": 28,
+          "LED_NEGATIVE_AMOUNTS": 25,
+          "LED_STAT_OUTLIERS": 40,
+          "LED_SPLIT_PURCHASES": 36,
+          "LED_BELOW_THRESHOLD": 2,
+          "LED_YEAR_END": 40,
+          "LED_ZERO_AMOUNTS": 13,
+          "LED_ROUND_AMOUNTS": 5,
+          "high_count": 2,
+          "medium_count": 3,
+          "low_count": 3
+        }
+      }
+    },
+    {
+      "time": "2026-10-22 08:03:59",
+      "type": "ui_view_change",
+      "details": {
+        "view": "dashboard"
+      }
+    },
+    {
+      "time": "2026-10-22 08:09:01",
+      "type": "ui_client_connected",
+      "details": {
+        "protocol": "http:"
+      }
+    },
+    {
+      "time": "2026-10-22 08:09:01",
+      "type": "models_refresh",
+      "details": {
+        "ok": true,
+        "url": "http://127.0.0.1:11434",
+        "count": 4
+      }
+    },
+    {
+      "time": "2026-10-22 08:09:07",
+      "type": "ui_view_change",
+      "details": {
+        "view": "settings"
+      }
+    },
+    {
+      "time": "2026-10-22 08:09:33",
+      "type": "ui_view_change",
+      "details": {
+        "view": "dashboard"
+      }
+    },
+    {
+      "time": "2026-10-22 08:09:34",
+      "type": "ui_view_change",
+      "details": {
+        "view": "upload"
+      }
+    },
+    {
+      "time": "2026-10-22 08:10:07",
+      "type": "audit_run",
+      "details": {
+        "filename": "المواقف المالية 2023-2025.xlsx",
+        "records": 1095,
+        "risk": 61,
+        "findings": {
+          "LED_DUPLICATE_PAYMENTS": 13,
+          "POS_NEAR_CEILING": 59,
+          "LED_STAT_OUTLIERS": 40,
+          "POS_AMENDMENT": 38,
+          "LED_SPLIT_PURCHASES": 30,
+          "LED_CONCENTRATION": 10,
+          "POS_YOY_VARIANCE": 9,
+          "POS_ZERO_BUDGET_PAID": 4,
+          "POS_IDLE_ALLOCATION": 4,
+          "LED_BELOW_THRESHOLD": 2,
+          "LED_YEAR_END": 40,
+          "LED_ROUND_AMOUNTS": 19,
+          "POS_LOW_EXECUTION": 3,
+          "high_count": 1,
+          "medium_count": 9,
+          "low_count": 3
+        }
+      }
+    },
+    {
+      "time": "2026-10-22 08:10:08",
+      "type": "ui_view_change",
+      "details": {
+        "view": "dashboard"
+      }
+    },
+    {
+      "time": "2026-10-22 08:11:42",
+      "type": "ui_view_change",
+      "details": {
+        "view": "upload"
+      }
+    },
+    {
+      "time": "2026-10-22 08:18:11",
+      "type": "ui_view_change",
+      "details": {
+        "view": "dashboard"
+      }
+    },
+    {
+      "time": "2026-10-22 08:18:14",
+      "type": "ui_view_change",
+      "details": {
+        "view": "ai"
+      }
+    },
+    {
+      "time": "2026-10-22 08:18:17",
+      "type": "ui_view_change",
+      "details": {
+        "view": "upload"
+      }
+    },
+    {
+      "time": "2026-10-22 08:18:23",
+      "type": "ui_view_change",
+      "details": {
+        "view": "dashboard"
+      }
+    },
+    {
+      "time": "2026-10-22 08:18:27",
+      "type": "ui_view_change",
+      "details": {
+        "view": "upload"
+      }
+    },
+    {
+      "time": "2026-10-22 08:18:35",
+      "type": "ui_view_change",
+      "details": {
+        "view": "dashboard"
+      }
+    },
+    {
+      "time": "2026-10-22 08:22:19",
+      "type": "ui_client_connected",
+      "details": {
+        "protocol": "file:"
+      }
+    },
+    {
+      "time": "2026-10-22 08:22:19",
+      "type": "models_refresh",
+      "details": {
+        "ok": true,
+        "url": "http://127.0.0.1:11434",
+        "count": 4
+      }
+    },
+    {
+      "time": "2026-10-22 08:22:20",
+      "type": "ui_client_connected",
+      "details": {
+        "protocol": "file:"
+      }
+    },
+    {
+      "time": "2026-10-22 08:22:20",
+      "type": "models_refresh",
+      "details": {
+        "ok": true,
+        "url": "http://127.0.0.1:11434",
+        "count": 4
+      }
+    },
+    {
+      "time": "2026-10-22 08:23:33",
+      "type": "ui_client_connected",
+      "details": {
+        "protocol": "http:"
+      }
+    },
+    {
+      "time": "2026-10-22 08:23:33",
+      "type": "models_refresh",
+      "details": {
+        "ok": true,
+        "url": "http://127.0.0.1:11434",
+        "count": 4
+      }
+    },
+    {
+      "time": "2026-10-22 08:24:01",
+      "type": "ui_client_connected",
+      "details": {
+        "protocol": "http:"
+      }
+    },
+    {
+      "time": "2026-10-22 08:24:01",
+      "type": "models_refresh",
+      "details": {
+        "ok": true,
+        "url": "http://127.0.0.1:11434",
+        "count": 4
+      }
+    },
+    {
+      "time": "2026-10-22 08:24:02",
+      "type": "ui_client_connected",
+      "details": {
+        "protocol": "http:"
+      }
+    },
+    {
+      "time": "2026-10-22 08:24:02",
+      "type": "models_refresh",
+      "details": {
+        "ok": true,
+        "url": "http://127.0.0.1:11434",
+        "count": 4
+      }
+    },
+    {
+      "time": "2026-10-22 08:24:02",
+      "type": "ui_client_connected",
+      "details": {
+        "protocol": "http:"
+      }
+    },
+    {
+      "time": "2026-10-22 08:24:02",
+      "type": "models_refresh",
+      "details": {
+        "ok": true,
+        "url": "http://127.0.0.1:11434",
+        "count": 4
+      }
+    },
+    {
+      "time": "2026-10-22 08:24:03",
+      "type": "ui_view_change",
+      "details": {
+        "view": "upload"
+      }
+    },
+    {
+      "time": "2026-10-22 08:24:07",
+      "type": "audit_run",
+      "details": {
+        "filename": "سجل الفواتير 2025.xlsb",
+        "records": 1318,
+        "risk": 43,
+        "findings": {
+          "LED_DUPLICATE_PAYMENTS": 40,
+          "LED_NEGATIVE_AMOUNTS": 10,
+          "LED_STAT_OUTLIERS": 40,
+          "LED_SPLIT_PURCHASES": 36,
+          "LED_BELOW_THRESHOLD": 1,
+          "LED_ZERO_AMOUNTS": 40,
+          "LED_YEAR_END": 24,
+          "LED_ROUND_AMOUNTS": 18,
+          "high_count": 2,
+          "medium_count": 3,
+          "low_count": 3
+        }
+      }
+    },
+    {
+      "time": "2026-10-22 08:24:07",
+      "type": "ui_view_change",
+      "details": {
+        "view": "dashboard"
+      }
+    },
+    {
+      "time": "2026-10-22 08:24:48",
+      "type": "ui_client_connected",
+      "details": {
+        "protocol": "http:"
+      }
+    },
+    {
+      "time": "2026-10-22 08:24:48",
+      "type": "models_refresh",
+      "details": {
+        "ok": true,
+        "url": "http://127.0.0.1:11434",
+        "count": 4
+      }
+    },
+    {
+      "time": "2026-10-22 08:25:03",
+      "type": "ui_view_change",
+      "details": {
+        "view": "dashboard"
+      }
+    },
+    {
+      "time": "2026-10-22 08:25:09",
+      "type": "ui_view_change",
+      "details": {
+        "view": "upload"
+      }
+    },
+    {
+      "time": "2026-10-22 08:25:32",
+      "type": "audit_run",
+      "details": {
+        "filename": "المواقف المالية 2023-2025.xlsx",
+        "records": 1095,
+        "risk": 61,
+        "findings": {
+          "LED_DUPLICATE_PAYMENTS": 13,
+          "POS_NEAR_CEILING": 59,
+          "LED_STAT_OUTLIERS": 40,
+          "POS_AMENDMENT": 38,
+          "LED_SPLIT_PURCHASES": 30,
+          "LED_CONCENTRATION": 10,
+          "POS_YOY_VARIANCE": 9,
+          "POS_ZERO_BUDGET_PAID": 4,
+          "POS_IDLE_ALLOCATION": 4,
+          "LED_BELOW_THRESHOLD": 2,
+          "LED_YEAR_END": 40,
+          "LED_ROUND_AMOUNTS": 19,
+          "POS_LOW_EXECUTION": 3,
+          "high_count": 1,
+          "medium_count": 9,
+          "low_count": 3
+        }
+      }
+    },
+    {
+      "time": "2026-10-22 08:25:32",
+      "type": "ui_view_change",
+      "details": {
+        "view": "dashboard"
+      }
+    },
+    {
+      "time": "2026-10-22 08:26:02",
+      "type": "ui_view_change",
+      "details": {
+        "view": "upload"
+      }
+    },
+    {
+      "time": "2026-10-22 08:26:12",
+      "type": "ui_view_change",
+      "details": {
+        "view": "dashboard"
+      }
+    },
+    {
+      "time": "2026-10-22 08:28:32",
+      "type": "ui_view_change",
+      "details": {
+        "view": "upload"
+      }
+    },
+    {
+      "time": "2026-10-22 08:28:34",
+      "type": "ui_view_change",
+      "details": {
+        "view": "ai"
+      }
+    },
+    {
+      "time": "2026-10-22 08:28:58",
+      "type": "ui_view_change",
+      "details": {
+        "view": "settings"
+      }
+    },
+    {
+      "time": "2026-10-22 08:30:04",
+      "type": "ui_language_change",
+      "details": {
+        "lang": "en"
+      }
+    },
+    {
+      "time": "2026-10-22 08:30:44",
+      "type": "ui_language_change",
+      "details": {
+        "lang": "ar"
+      }
+    },
+    {
+      "time": "2026-10-22 08:30:55",
+      "type": "ui_view_change",
+      "details": {
+        "view": "dashboard"
+      }
+    },
+    {
+      "time": "2026-10-22 08:31:13",
+      "type": "ui_view_change",
+      "details": {
+        "view": "upload"
+      }
+    },
+    {
+      "time": "2026-10-22 08:31:35",
+      "type": "audit_run",
+      "details": {
+        "filename": "سجل المدفوعات اليومية 2025.xlsx",
+        "records": 1269,
+        "risk": 44,
+        "findings": {
+          "LED_DUPLICATE_PAYMENTS": 28,
+          "LED_NEGATIVE_AMOUNTS": 25,
+          "LED_STAT_OUTLIERS": 40,
+          "LED_SPLIT_PURCHASES": 36,
+          "LED_BELOW_THRESHOLD": 2,
+          "LED_YEAR_END": 40,
+          "LED_ZERO_AMOUNTS": 13,
+          "LED_ROUND_AMOUNTS": 5,
+          "high_count": 2,
+          "medium_count": 3,
+          "low_count": 3
+        }
+      }
+    },
+    {
+      "time": "2026-10-22 08:31:35",
+      "type": "ui_view_change",
+      "details": {
+        "view": "dashboard"
+      }
+    },
+    {
+      "time": "2026-10-22 08:33:25",
+      "type": "ui_view_change",
+      "details": {
+        "view": "settings"
+      }
+    },
+    {
+      "time": "2026-10-22 08:33:37",
+      "type": "ui_view_change",
+      "details": {
+        "view": "chat"
+      }
+    },
+    {
+      "time": "2026-10-22 08:33:58",
+      "type": "chat_start",
+      "details": {
+        "model": "qwen3:4b",
+        "language": "ar"
+      }
+    },
+    {
+      "time": "2026-10-22 08:34:12",
+      "type": "ui_view_change",
+      "details": {
+        "view": "ai"
+      }
+    },
+    {
+      "time": "2026-10-22 08:34:29",
+      "type": "ui_view_change",
+      "details": {
+        "view": "upload"
+      }
+    },
+    {
+      "time": "2026-10-22 08:34:41",
+      "type": "audit_run",
+      "details": {
+        "filename": "سجل الفواتير 2025.xlsb",
+        "records": 1318,
+        "risk": 43,
+        "findings": {
+          "LED_DUPLICATE_PAYMENTS": 40,
+          "LED_NEGATIVE_AMOUNTS": 10,
+          "LED_STAT_OUTLIERS": 40,
+          "LED_SPLIT_PURCHASES": 36,
+          "LED_BELOW_THRESHOLD": 1,
+          "LED_ZERO_AMOUNTS": 40,
+          "LED_YEAR_END": 24,
+          "LED_ROUND_AMOUNTS": 18,
+          "high_count": 2,
+          "medium_count": 3,
+          "low_count": 3
+        }
+      }
+    },
+    {
+      "time": "2026-10-22 08:34:41",
+      "type": "ui_view_change",
+      "details": {
+        "view": "dashboard"
+      }
+    },
+    {
+      "time": "2026-10-22 08:34:49",
+      "type": "ui_view_change",
+      "details": {
+        "view": "upload"
+      }
+    },
+    {
+      "time": "2026-10-22 08:34:55",
+      "type": "audit_run",
+      "details": {
+        "filename": "سجل المدفوعات اليومية 2025.xlsx",
+        "records": 1269,
+        "risk": 44,
+        "findings": {
+          "LED_DUPLICATE_PAYMENTS": 28,
+          "LED_NEGATIVE_AMOUNTS": 25,
+          "LED_STAT_OUTLIERS": 40,
+          "LED_SPLIT_PURCHASES": 36,
+          "LED_BELOW_THRESHOLD": 2,
+          "LED_YEAR_END": 40,
+          "LED_ZERO_AMOUNTS": 13,
+          "LED_ROUND_AMOUNTS": 5,
+          "high_count": 2,
+          "medium_count": 3,
+          "low_count": 3
+        }
+      }
+    },
+    {
+      "time": "2026-10-22 08:34:55",
+      "type": "ui_view_change",
+      "details": {
+        "view": "dashboard"
+      }
+    },
+    {
+      "time": "2026-10-22 08:35:16",
+      "type": "ui_view_change",
+      "details": {
+        "view": "dashboard"
+      }
+    },
+    {
+      "time": "2026-10-22 08:35:21",
+      "type": "ui_view_change",
+      "details": {
+        "view": "upload"
+      }
+    },
+    {
+      "time": "2026-10-22 08:36:09",
+      "type": "audit_run",
+      "details": {
+        "filename": "المواقف المالية 2023-2025.xlsx",
+        "records": 1095,
+        "risk": 61,
+        "findings": {
+          "LED_DUPLICATE_PAYMENTS": 13,
+          "POS_NEAR_CEILING": 59,
+          "LED_STAT_OUTLIERS": 40,
+          "POS_AMENDMENT": 38,
+          "LED_SPLIT_PURCHASES": 30,
+          "LED_CONCENTRATION": 10,
+          "POS_YOY_VARIANCE": 9,
+          "POS_ZERO_BUDGET_PAID": 4,
+          "POS_IDLE_ALLOCATION": 4,
+          "LED_BELOW_THRESHOLD": 2,
+          "LED_YEAR_END": 40,
+          "LED_ROUND_AMOUNTS": 19,
+          "POS_LOW_EXECUTION": 3,
+          "high_count": 1,
+          "medium_count": 9,
+          "low_count": 3
+        }
+      }
+    },
+    {
+      "time": "2026-10-22 08:36:09",
+      "type": "ui_view_change",
+      "details": {
+        "view": "dashboard"
+      }
+    },
+    {
+      "time": "2026-10-22 08:40:34",
+      "type": "ui_view_change",
+      "details": {
+        "view": "upload"
+      }
+    },
+    {
+      "time": "2026-10-22 08:40:52",
+      "type": "audit_run",
+      "details": {
+        "filename": "بيانات_شركة_المطاحن_والحبوب_الجمهورية_2025.xlsx",
+        "records": 12000,
+        "risk": 44,
+        "findings": {
+          "LED_DUPLICATE_PAYMENTS": 303,
+          "LED_SPLIT_PURCHASES": 3406,
+          "LED_WEEKEND_TRANSACTIONS": 3323,
+          "LED_BELOW_THRESHOLD": 248,
+          "LED_ROUND_AMOUNTS": 40,
+          "LED_YEAR_END": 40,
+          "high_count": 1,
+          "medium_count": 3,
+          "low_count": 2
+        }
+      }
+    },
+    {
+      "time": "2026-10-22 08:40:52",
+      "type": "ui_view_change",
+      "details": {
+        "view": "dashboard"
+      }
+    },
+    {
+      "time": "2026-10-22 08:43:59",
+      "type": "ui_client_connected",
+      "details": {
+        "protocol": "http:"
+      }
+    },
+    {
+      "time": "2026-10-22 08:43:59",
+      "type": "models_refresh",
+      "details": {
+        "ok": true,
+        "url": "http://127.0.0.1:11434",
+        "count": 4
+      }
+    },
+    {
+      "time": "2026-10-22 08:44:01",
+      "type": "ui_client_connected",
+      "details": {
+        "protocol": "http:"
+      }
+    },
+    {
+      "time": "2026-10-22 08:44:01",
+      "type": "models_refresh",
+      "details": {
+        "ok": true,
+        "url": "http://127.0.0.1:11434",
+        "count": 4
+      }
+    },
+    {
+      "time": "2026-10-22 08:44:02",
+      "type": "ui_client_connected",
+      "details": {
+        "protocol": "http:"
+      }
+    },
+    {
+      "time": "2026-10-22 08:44:02",
+      "type": "models_refresh",
+      "details": {
+        "ok": true,
+        "url": "http://127.0.0.1:11434",
+        "count": 4
+      }
+    },
+    {
+      "time": "2026-10-22 08:44:02",
+      "type": "ui_client_connected",
+      "details": {
+        "protocol": "http:"
+      }
+    },
+    {
+      "time": "2026-10-22 08:44:02",
+      "type": "models_refresh",
+      "details": {
+        "ok": true,
+        "url": "http://127.0.0.1:11434",
+        "count": 4
+      }
+    },
+    {
+      "time": "2026-10-22 08:44:55",
+      "type": "ui_client_connected",
+      "details": {
+        "protocol": "file:"
+      }
+    },
+    {
+      "time": "2026-10-22 08:44:55",
+      "type": "models_refresh",
+      "details": {
+        "ok": true,
+        "url": "http://127.0.0.1:11434",
+        "count": 4
+      }
+    },
+    {
+      "time": "2026-10-22 08:44:55",
+      "type": "ui_client_connected",
+      "details": {
+        "protocol": "file:"
+      }
+    },
+    {
+      "time": "2026-10-22 08:44:55",
+      "type": "models_refresh",
+      "details": {
+        "ok": true,
+        "url": "http://127.0.0.1:11434",
+        "count": 4
+      }
+    },
+    {
+      "time": "2026-10-22 08:44:55",
+      "type": "ui_client_connected",
+      "details": {
+        "protocol": "file:"
+      }
+    },
+    {
+      "time": "2026-10-22 08:44:55",
+      "type": "models_refresh",
+      "details": {
+        "ok": true,
+        "url": "http://127.0.0.1:11434",
+        "count": 4
+      }
+    },
+    {
+      "time": "2026-10-22 08:44:56",
+      "type": "ui_client_connected",
+      "details": {
+        "protocol": "file:"
+      }
+    },
+    {
+      "time": "2026-10-22 08:44:56",
+      "type": "models_refresh",
+      "details": {
+        "ok": true,
+        "url": "http://127.0.0.1:11434",
+        "count": 4
+      }
+    },
+    {
+      "time": "2026-10-22 08:44:56",
+      "type": "ui_client_connected",
+      "details": {
+        "protocol": "file:"
+      }
+    },
+    {
+      "time": "2026-10-22 08:44:56",
+      "type": "models_refresh",
+      "details": {
+        "ok": true,
+        "url": "http://127.0.0.1:11434",
+        "count": 4
+      }
+    },
+    {
+      "time": "2026-10-22 08:44:56",
+      "type": "ui_client_connected",
+      "details": {
+        "protocol": "file:"
+      }
+    },
+    {
+      "time": "2026-10-22 08:44:56",
+      "type": "models_refresh",
+      "details": {
+        "ok": true,
+        "url": "http://127.0.0.1:11434",
+        "count": 4
+      }
+    },
+    {
+      "time": "2026-10-22 08:44:56",
+      "type": "ui_client_connected",
+      "details": {
+        "protocol": "file:"
+      }
+    },
+    {
+      "time": "2026-10-22 08:44:56",
+      "type": "models_refresh",
+      "details": {
+        "ok": true,
+        "url": "http://127.0.0.1:11434",
+        "count": 4
+      }
+    },
+    {
+      "time": "2026-10-22 08:44:56",
+      "type": "ui_client_connected",
+      "details": {
+        "protocol": "file:"
+      }
+    },
+    {
+      "time": "2026-10-22 08:44:56",
+      "type": "models_refresh",
+      "details": {
+        "ok": true,
+        "url": "http://127.0.0.1:11434",
+        "count": 4
+      }
+    },
+    {
+      "time": "2026-10-22 08:44:57",
+      "type": "ui_client_connected",
+      "details": {
+        "protocol": "file:"
+      }
+    },
+    {
+      "time": "2026-10-22 08:44:57",
+      "type": "models_refresh",
+      "details": {
+        "ok": true,
+        "url": "http://127.0.0.1:11434",
+        "count": 4
+      }
+    },
+    {
+      "time": "2026-10-22 08:44:57",
+      "type": "ui_client_connected",
+      "details": {
+        "protocol": "file:"
+      }
+    },
+    {
+      "time": "2026-10-22 08:44:57",
+      "type": "models_refresh",
+      "details": {
+        "ok": true,
+        "url": "http://127.0.0.1:11434",
+        "count": 4
+      }
+    },
+    {
+      "time": "2026-10-22 08:44:58",
+      "type": "ui_client_connected",
+      "details": {
+        "protocol": "file:"
+      }
+    },
+    {
+      "time": "2026-10-22 08:44:58",
+      "type": "models_refresh",
+      "details": {
+        "ok": true,
+        "url": "http://127.0.0.1:11434",
+        "count": 4
+      }
+    },
+    {
+      "time": "2026-10-22 08:47:25",
+      "type": "ui_client_connected",
+      "details": {
+        "protocol": "http:"
+      }
+    },
+    {
+      "time": "2026-10-22 08:47:25",
+      "type": "models_refresh",
+      "details": {
+        "ok": true,
+        "url": "http://127.0.0.1:11434",
+        "count": 4
+      }
+    },
+    {
+      "time": "2026-10-22 08:47:38",
+      "type": "ui_view_change",
+      "details": {
+        "view": "upload"
+      }
+    },
+    {
+      "time": "2026-10-22 08:48:23",
+      "type": "audit_error",
+      "details": {
+        "filename": "البيانات الختامية للوحدات الحكومية لسنة 2024.docx",
+        "reason": "unsupported_format"
+      }
+    },
+    {
+      "time": "2026-10-22 08:49:27",
+      "type": "ui_view_change",
+      "details": {
+        "view": "chat"
+      }
+    },
+    {
+      "time": "2026-10-22 08:49:31",
+      "type": "ui_view_change",
+      "details": {
+        "view": "ai"
+      }
+    },
+    {
+      "time": "2026-10-22 08:50:15",
+      "type": "ui_view_change",
+      "details": {
+        "view": "dashboard"
+      }
+    },
+    {
+      "time": "2026-10-22 08:50:22",
+      "type": "ui_view_change",
+      "details": {
+        "view": "upload"
+      }
+    },
+    {
+      "time": "2026-10-22 08:50:40",
+      "type": "audit_run",
+      "details": {
+        "filename": "المواقف المالية 2023-2025.xlsx",
+        "records": 1095,
+        "risk": 61,
+        "findings": {
+          "LED_DUPLICATE_PAYMENTS": 13,
+          "POS_NEAR_CEILING": 59,
+          "LED_STAT_OUTLIERS": 40,
+          "POS_AMENDMENT": 38,
+          "LED_SPLIT_PURCHASES": 30,
+          "LED_CONCENTRATION": 10,
+          "POS_YOY_VARIANCE": 9,
+          "POS_ZERO_BUDGET_PAID": 4,
+          "POS_IDLE_ALLOCATION": 4,
+          "LED_BELOW_THRESHOLD": 2,
+          "LED_YEAR_END": 40,
+          "LED_ROUND_AMOUNTS": 19,
+          "POS_LOW_EXECUTION": 3,
+          "high_count": 1,
+          "medium_count": 9,
+          "low_count": 3
+        }
+      }
+    },
+    {
+      "time": "2026-10-22 08:50:40",
+      "type": "ui_client_connected",
+      "details": {
+        "protocol": "file:"
+      }
+    },
+    {
+      "time": "2026-10-22 08:50:40",
+      "type": "models_refresh",
+      "details": {
+        "ok": true,
+        "url": "http://127.0.0.1:11434",
+        "count": 4
+      }
+    },
+    {
+      "time": "2026-10-22 08:50:40",
+      "type": "ui_view_change",
+      "details": {
+        "view": "dashboard"
+      }
+    },
+    {
+      "time": "2026-10-22 08:50:54",
+      "type": "ui_client_connected",
+      "details": {
+        "protocol": "http:"
+      }
+    },
+    {
+      "time": "2026-10-22 08:50:54",
+      "type": "models_refresh",
+      "details": {
+        "ok": true,
+        "url": "http://127.0.0.1:11434",
+        "count": 4
+      }
+    },
+    {
+      "time": "2026-10-22 08:50:55",
+      "type": "ui_client_connected",
+      "details": {
+        "protocol": "http:"
+      }
+    },
+    {
+      "time": "2026-10-22 08:50:55",
+      "type": "models_refresh",
+      "details": {
+        "ok": true,
+        "url": "http://127.0.0.1:11434",
+        "count": 4
+      }
+    },
+    {
+      "time": "2026-10-22 08:50:56",
+      "type": "ui_client_connected",
+      "details": {
+        "protocol": "http:"
+      }
+    },
+    {
+      "time": "2026-10-22 08:50:56",
+      "type": "models_refresh",
+      "details": {
+        "ok": true,
+        "url": "http://127.0.0.1:11434",
+        "count": 4
+      }
+    },
+    {
+      "time": "2026-10-22 08:50:56",
+      "type": "ui_client_connected",
+      "details": {
+        "protocol": "http:"
+      }
+    },
+    {
+      "time": "2026-10-22 08:50:57",
+      "type": "models_refresh",
+      "details": {
+        "ok": true,
+        "url": "http://127.0.0.1:11434",
+        "count": 4
+      }
+    },
+    {
+      "time": "2026-10-22 08:51:11",
+      "type": "ui_view_change",
+      "details": {
+        "view": "chat"
+      }
+    },
+    {
+      "time": "2026-10-22 08:51:13",
+      "type": "ui_view_change",
+      "details": {
+        "view": "ai"
+      }
+    },
+    {
+      "time": "2026-10-22 08:51:22",
+      "type": "ui_view_change",
+      "details": {
+        "view": "upload"
+      }
+    },
+    {
+      "time": "2026-10-22 08:51:23",
+      "type": "ui_view_change",
+      "details": {
+        "view": "dashboard"
+      }
+    },
+    {
+      "time": "2026-10-22 08:55:14",
+      "type": "ui_client_connected",
+      "details": {
+        "protocol": "http:"
+      }
+    },
+    {
+      "time": "2026-10-22 08:55:14",
+      "type": "models_refresh",
+      "details": {
+        "ok": true,
+        "url": "http://127.0.0.1:11434",
+        "count": 4
+      }
+    },
+    {
+      "time": "2026-10-22 08:55:17",
+      "type": "ui_view_change",
+      "details": {
+        "view": "upload"
+      }
+    },
+    {
+      "time": "2026-10-22 08:55:35",
+      "type": "audit_run",
+      "details": {
+        "filename": "المواقف المالية 2023-2025.xlsx",
+        "records": 1095,
+        "risk": 61,
+        "findings": {
+          "LED_DUPLICATE_PAYMENTS": 13,
+          "POS_NEAR_CEILING": 59,
+          "LED_STAT_OUTLIERS": 40,
+          "POS_AMENDMENT": 38,
+          "LED_SPLIT_PURCHASES": 30,
+          "LED_CONCENTRATION": 10,
+          "POS_YOY_VARIANCE": 9,
+          "POS_ZERO_BUDGET_PAID": 4,
+          "POS_IDLE_ALLOCATION": 4,
+          "LED_BELOW_THRESHOLD": 2,
+          "LED_YEAR_END": 40,
+          "LED_ROUND_AMOUNTS": 19,
+          "POS_LOW_EXECUTION": 3,
+          "high_count": 1,
+          "medium_count": 9,
+          "low_count": 3
+        }
+      }
+    },
+    {
+      "time": "2026-10-22 08:55:35",
+      "type": "ui_view_change",
+      "details": {
+        "view": "dashboard"
+      }
+    },
+    {
+      "time": "2026-10-22 09:00:20",
+      "type": "ui_client_connected",
+      "details": {
+        "protocol": "http:"
+      }
+    },
+    {
+      "time": "2026-10-22 09:00:20",
+      "type": "models_refresh",
+      "details": {
+        "ok": true,
+        "url": "http://127.0.0.1:11434",
+        "count": 4
+      }
+    },
+    {
+      "time": "2026-10-22 09:00:20",
+      "type": "ui_client_connected",
+      "details": {
+        "protocol": "http:"
+      }
+    },
+    {
+      "time": "2026-10-22 09:00:20",
+      "type": "models_refresh",
+      "details": {
+        "ok": true,
+        "url": "http://127.0.0.1:11434",
+        "count": 4
+      }
+    },
+    {
+      "time": "2026-10-22 09:00:21",
+      "type": "ui_client_connected",
+      "details": {
+        "protocol": "http:"
+      }
+    },
+    {
+      "time": "2026-10-22 09:00:21",
+      "type": "models_refresh",
+      "details": {
+        "ok": true,
+        "url": "http://127.0.0.1:11434",
+        "count": 4
+      }
+    },
+    {
+      "time": "2026-10-22 09:26:00",
+      "type": "ui_client_connected",
+      "details": {
+        "protocol": "http:"
+      }
+    },
+    {
+      "time": "2026-10-22 09:26:00",
+      "type": "models_refresh",
+      "details": {
+        "ok": true,
+        "url": "http://127.0.0.1:11434",
+        "count": 4
+      }
+    },
+    {
+      "time": "2026-10-22 09:29:11",
+      "type": "ui_client_connected",
+      "details": {
+        "protocol": "http:"
+      }
+    },
+    {
+      "time": "2026-10-22 09:29:11",
+      "type": "models_refresh",
+      "details": {
+        "ok": true,
+        "url": "http://127.0.0.1:11434",
+        "count": 4
+      }
+    },
+    {
+      "time": "2026-10-22 09:30:18",
+      "type": "ui_client_connected",
+      "details": {
+        "protocol": "http:"
+      }
+    },
+    {
+      "time": "2026-10-22 09:30:18",
+      "type": "models_refresh",
+      "details": {
+        "ok": true,
+        "url": "http://127.0.0.1:11434",
+        "count": 4
+      }
+    },
+    {
+      "time": "2026-10-22 09:30:22",
+      "type": "ui_view_change",
+      "details": {
+        "view": "upload"
+      }
+    },
+    {
+      "time": "2026-10-22 09:31:02",
+      "type": "ui_client_connected",
+      "details": {
+        "protocol": "http:"
+      }
+    },
+    {
+      "time": "2026-10-22 09:31:02",
+      "type": "models_refresh",
+      "details": {
+        "ok": true,
+        "url": "http://127.0.0.1:11434",
+        "count": 4
+      }
+    },
+    {
+      "time": "2026-10-22 09:31:04",
+      "type": "ui_view_change",
+      "details": {
+        "view": "upload"
+      }
+    },
+    {
+      "time": "2026-10-22 09:31:57",
+      "type": "audit_run",
+      "details": {
+        "filename": "الشؤون سجل مدفوعات2025.xlsx",
+        "records": 1376,
+        "risk": 47,
+        "findings": {
+          "LED_DUPLICATE_PAYMENTS": 60,
+          "LED_NEGATIVE_AMOUNTS": 33,
+          "LED_STAT_OUTLIERS": 40,
+          "LED_SPLIT_PURCHASES": 36,
+          "LED_BELOW_THRESHOLD": 26,
+          "LED_YEAR_END": 25,
+          "LED_ZERO_AMOUNTS": 11,
+          "LED_ROUND_AMOUNTS": 4,
+          "high_count": 2,
+          "medium_count": 3,
+          "low_count": 3
+        }
+      }
+    },
+    {
+      "time": "2026-10-22 09:31:57",
+      "type": "ui_view_change",
+      "details": {
+        "view": "dashboard"
+      }
+    },
+    {
+      "time": "2026-10-22 09:38:59",
+      "type": "ui_view_change",
+      "details": {
+        "view": "upload"
+      }
+    },
+    {
+      "time": "2026-10-22 09:39:19",
+      "type": "audit_run",
+      "details": {
+        "filename": "المواقف المالية 2023-2025.xlsx",
+        "records": 1095,
+        "risk": 61,
+        "findings": {
+          "LED_DUPLICATE_PAYMENTS": 13,
+          "POS_NEAR_CEILING": 59,
+          "LED_STAT_OUTLIERS": 40,
+          "POS_AMENDMENT": 38,
+          "LED_SPLIT_PURCHASES": 30,
+          "LED_CONCENTRATION": 10,
+          "POS_YOY_VARIANCE": 9,
+          "POS_ZERO_BUDGET_PAID": 4,
+          "POS_IDLE_ALLOCATION": 4,
+          "LED_BELOW_THRESHOLD": 2,
+          "LED_YEAR_END": 40,
+          "LED_ROUND_AMOUNTS": 19,
+          "POS_LOW_EXECUTION": 3,
+          "high_count": 1,
+          "medium_count": 9,
+          "low_count": 3
+        }
+      }
+    },
+    {
+      "time": "2026-10-22 09:39:19",
+      "type": "ui_view_change",
+      "details": {
+        "view": "dashboard"
+      }
+    },
+    {
+      "time": "2026-10-22 09:44:09",
+      "type": "ui_view_change",
+      "details": {
+        "view": "dashboard"
+      }
+    },
+    {
+      "time": "2026-10-22 09:44:10",
+      "type": "ui_view_change",
+      "details": {
+        "view": "upload"
+      }
+    },
+    {
+      "time": "2026-10-22 09:51:25",
+      "type": "ui_client_connected",
+      "details": {
+        "protocol": "http:"
+      }
+    },
+    {
+      "time": "2026-10-22 09:51:25",
+      "type": "models_refresh",
+      "details": {
+        "ok": true,
+        "url": "http://127.0.0.1:11434",
+        "count": 4
+      }
+    },
+    {
+      "time": "2026-10-22 09:51:25",
+      "type": "ui_client_connected",
+      "details": {
+        "protocol": "http:"
+      }
+    },
+    {
+      "time": "2026-10-22 09:51:26",
+      "type": "models_refresh",
+      "details": {
+        "ok": true,
+        "url": "http://127.0.0.1:11434",
+        "count": 4
+      }
+    },
+    {
+      "time": "2026-10-22 09:51:26",
+      "type": "ui_client_connected",
+      "details": {
+        "protocol": "http:"
+      }
+    },
+    {
+      "time": "2026-10-22 09:51:26",
+      "type": "models_refresh",
+      "details": {
+        "ok": true,
+        "url": "http://127.0.0.1:11434",
+        "count": 4
+      }
+    },
+    {
+      "time": "2026-10-22 09:51:26",
+      "type": "ui_client_connected",
+      "details": {
+        "protocol": "http:"
+      }
+    },
+    {
+      "time": "2026-10-22 09:51:26",
+      "type": "models_refresh",
+      "details": {
+        "ok": true,
+        "url": "http://127.0.0.1:11434",
+        "count": 4
+      }
+    },
+    {
+      "time": "2026-10-22 09:51:27",
+      "type": "ui_view_change",
+      "details": {
+        "view": "upload"
+      }
+    },
+    {
+      "time": "2026-10-22 09:51:31",
+      "type": "audit_run",
+      "details": {
+        "filename": "سجل الفواتير 2025.xlsb",
+        "records": 1318,
+        "risk": 43,
+        "findings": {
+          "LED_DUPLICATE_PAYMENTS": 40,
+          "LED_NEGATIVE_AMOUNTS": 10,
+          "LED_STAT_OUTLIERS": 40,
+          "LED_SPLIT_PURCHASES": 36,
+          "LED_BELOW_THRESHOLD": 1,
+          "LED_ZERO_AMOUNTS": 40,
+          "LED_YEAR_END": 24,
+          "LED_ROUND_AMOUNTS": 18,
+          "high_count": 2,
+          "medium_count": 3,
+          "low_count": 3
+        }
+      }
+    },
+    {
+      "time": "2026-10-22 09:51:31",
+      "type": "ui_view_change",
+      "details": {
+        "view": "dashboard"
+      }
+    },
+    {
+      "time": "2026-10-22 10:03:07",
+      "type": "ui_client_connected",
+      "details": {
+        "protocol": "http:"
+      }
+    },
+    {
+      "time": "2026-10-22 10:03:07",
+      "type": "models_refresh",
+      "details": {
+        "ok": true,
+        "url": "http://127.0.0.1:11434",
+        "count": 4
+      }
+    },
+    {
+      "time": "2026-10-22 10:03:08",
+      "type": "ui_client_connected",
+      "details": {
+        "protocol": "http:"
+      }
+    },
+    {
+      "time": "2026-10-22 10:03:08",
+      "type": "models_refresh",
+      "details": {
+        "ok": true,
+        "url": "http://127.0.0.1:11434",
+        "count": 4
+      }
+    },
+    {
+      "time": "2026-10-22 10:03:08",
+      "type": "ui_client_connected",
+      "details": {
+        "protocol": "http:"
+      }
+    },
+    {
+      "time": "2026-10-22 10:03:08",
+      "type": "models_refresh",
+      "details": {
+        "ok": true,
+        "url": "http://127.0.0.1:11434",
+        "count": 4
+      }
+    },
+    {
+      "time": "2026-10-22 10:26:44",
+      "type": "ui_client_connected",
+      "details": {
+        "protocol": "http:"
+      }
+    },
+    {
+      "time": "2026-10-22 10:26:44",
+      "type": "models_refresh",
+      "details": {
+        "ok": true,
+        "url": "http://127.0.0.1:11434",
+        "count": 4
+      }
+    },
+    {
+      "time": "2026-10-22 10:26:56",
+      "type": "ui_view_change",
+      "details": {
+        "view": "upload"
+      }
+    },
+    {
+      "time": "2026-10-22 10:27:27",
+      "type": "audit_run",
+      "details": {
+        "filename": "سجل المدفوعات 2025.xlsx",
+        "records": 1239,
+        "risk": 49,
+        "findings": {
+          "LED_DUPLICATE_PAYMENTS": 33,
+          "LED_NEGATIVE_AMOUNTS": 9,
+          "LED_SPLIT_PURCHASES": 56,
+          "LED_STAT_OUTLIERS": 40,
+          "LED_CONCENTRATION": 10,
+          "LED_BELOW_THRESHOLD": 6,
+          "LED_ZERO_AMOUNTS": 24,
+          "LED_YEAR_END": 19,
+          "LED_ROUND_AMOUNTS": 5,
+          "high_count": 2,
+          "medium_count": 4,
+          "low_count": 3
+        }
+      }
+    },
+    {
+      "time": "2026-10-22 10:27:27",
+      "type": "ui_view_change",
+      "details": {
+        "view": "dashboard"
+      }
+    },
+    {
+      "time": "2026-10-22 10:29:58",
+      "type": "ui_client_connected",
+      "details": {
+        "protocol": "http:"
+      }
+    },
+    {
+      "time": "2026-10-22 10:29:58",
+      "type": "models_refresh",
+      "details": {
+        "ok": true,
+        "url": "http://127.0.0.1:11434",
+        "count": 4
+      }
+    },
+    {
+      "time": "2026-10-22 10:29:59",
+      "type": "ui_client_connected",
+      "details": {
+        "protocol": "http:"
+      }
+    },
+    {
+      "time": "2026-10-22 10:29:59",
+      "type": "models_refresh",
+      "details": {
+        "ok": true,
+        "url": "http://127.0.0.1:11434",
+        "count": 4
+      }
+    },
+    {
+      "time": "2026-10-22 10:35:50",
+      "type": "ui_client_connected",
+      "details": {
+        "protocol": "http:"
+      }
+    },
+    {
+      "time": "2026-10-22 10:35:50",
+      "type": "models_refresh",
+      "details": {
+        "ok": true,
+        "url": "http://127.0.0.1:11434",
+        "count": 4
+      }
+    },
+    {
+      "time": "2026-10-22 10:42:15",
+      "type": "ui_view_change",
+      "details": {
+        "view": "upload"
+      }
+    },
+    {
+      "time": "2026-10-22 10:42:20",
+      "type": "audit_run",
+      "details": {
+        "filename": "سجل المدفوعات اليومية 2025.xlsx",
+        "records": 1269,
+        "risk": 44,
+        "findings": {
+          "LED_DUPLICATE_PAYMENTS": 28,
+          "LED_NEGATIVE_AMOUNTS": 25,
+          "LED_STAT_OUTLIERS": 40,
+          "LED_SPLIT_PURCHASES": 36,
+          "LED_BELOW_THRESHOLD": 2,
+          "LED_YEAR_END": 40,
+          "LED_ZERO_AMOUNTS": 13,
+          "LED_ROUND_AMOUNTS": 5,
+          "high_count": 2,
+          "medium_count": 3,
+          "low_count": 3
+        }
+      }
+    },
+    {
+      "time": "2026-10-22 10:42:20",
+      "type": "ui_view_change",
+      "details": {
+        "view": "dashboard"
+      }
+    },
+    {
+      "time": "2026-10-22 10:44:58",
+      "type": "ui_language_change",
+      "details": {
+        "lang": "en"
+      }
+    },
+    {
+      "time": "2026-10-22 10:45:46",
+      "type": "ui_language_change",
+      "details": {
+        "lang": "ar"
+      }
+    },
+    {
+      "time": "2026-10-22 10:45:48",
+      "type": "ui_view_change",
+      "details": {
+        "view": "upload"
+      }
+    },
+    {
+      "time": "2026-10-22 10:46:22",
+      "type": "ui_view_change",
+      "details": {
+        "view": "ai"
+      }
+    },
+    {
+      "time": "2026-10-22 10:46:25",
+      "type": "ui_view_change",
+      "details": {
+        "view": "settings"
+      }
+    },
+    {
+      "time": "2026-10-22 10:51:57",
+      "type": "ui_client_connected",
+      "details": {
+        "protocol": "http:"
+      }
+    },
+    {
+      "time": "2026-10-22 10:51:57",
+      "type": "models_refresh",
+      "details": {
+        "ok": true,
+        "url": "http://127.0.0.1:11434",
+        "count": 4
+      }
+    },
+    {
+      "time": "2026-10-22 10:51:57",
+      "type": "ui_client_connected",
+      "details": {
+        "protocol": "http:"
+      }
+    },
+    {
+      "time": "2026-10-22 10:51:57",
+      "type": "models_refresh",
+      "details": {
+        "ok": true,
+        "url": "http://127.0.0.1:11434",
+        "count": 4
+      }
+    },
+    {
+      "time": "2026-10-22 10:51:58",
+      "type": "ui_client_connected",
+      "details": {
+        "protocol": "http:"
+      }
+    },
+    {
+      "time": "2026-10-22 10:51:58",
+      "type": "models_refresh",
+      "details": {
+        "ok": true,
+        "url": "http://127.0.0.1:11434",
+        "count": 4
+      }
+    },
+    {
+      "time": "2026-10-22 10:51:58",
+      "type": "ui_client_connected",
+      "details": {
+        "protocol": "http:"
+      }
+    },
+    {
+      "time": "2026-10-22 10:51:59",
+      "type": "models_refresh",
+      "details": {
+        "ok": true,
+        "url": "http://127.0.0.1:11434",
+        "count": 4
+      }
+    },
+    {
+      "time": "2026-10-22 10:51:59",
+      "type": "ui_client_connected",
+      "details": {
+        "protocol": "http:"
+      }
+    },
+    {
+      "time": "2026-10-22 10:51:59",
+      "type": "models_refresh",
+      "details": {
+        "ok": true,
+        "url": "http://127.0.0.1:11434",
+        "count": 4
+      }
+    },
+    {
+      "time": "2026-10-22 10:52:00",
+      "type": "ui_client_connected",
+      "details": {
+        "protocol": "http:"
+      }
+    },
+    {
+      "time": "2026-10-22 10:52:00",
+      "type": "models_refresh",
+      "details": {
+        "ok": true,
+        "url": "http://127.0.0.1:11434",
+        "count": 4
+      }
+    },
+    {
+      "time": "2026-10-22 10:52:40",
+      "type": "ui_view_change",
+      "details": {
+        "view": "upload"
+      }
+    },
+    {
+      "time": "2026-10-22 10:52:42",
+      "type": "ui_view_change",
+      "details": {
+        "view": "dashboard"
+      }
+    },
+    {
+      "time": "2026-10-22 10:52:43",
+      "type": "ui_view_change",
+      "details": {
+        "view": "upload"
+      }
+    },
+    {
+      "time": "2026-10-22 10:52:44",
+      "type": "ui_view_change",
+      "details": {
+        "view": "ai"
+      }
+    },
+    {
+      "time": "2026-10-22 10:52:55",
+      "type": "ui_view_change",
+      "details": {
+        "view": "chat"
+      }
+    },
+    {
+      "time": "2026-10-22 10:52:56",
+      "type": "ui_view_change",
+      "details": {
+        "view": "settings"
+      }
+    },
+    {
+      "time": "2026-10-22 11:28:58",
+      "type": "ui_client_connected",
+      "details": {
+        "protocol": "http:"
+      }
+    },
+    {
+      "time": "2026-10-22 11:28:58",
+      "type": "models_refresh",
+      "details": {
+        "ok": true,
+        "url": "http://127.0.0.1:11434",
+        "count": 4
+      }
+    },
+    {
+      "time": "2026-10-22 11:28:59",
+      "type": "ui_client_connected",
+      "details": {
+        "protocol": "http:"
+      }
+    },
+    {
+      "time": "2026-10-22 11:28:59",
+      "type": "models_refresh",
+      "details": {
+        "ok": true,
+        "url": "http://127.0.0.1:11434",
+        "count": 4
+      }
+    },
+    {
+      "time": "2026-10-22 11:28:59",
+      "type": "ui_client_connected",
+      "details": {
+        "protocol": "http:"
+      }
+    },
+    {
+      "time": "2026-10-22 11:28:59",
+      "type": "models_refresh",
+      "details": {
+        "ok": true,
+        "url": "http://127.0.0.1:11434",
+        "count": 4
+      }
+    },
+    {
+      "time": "2026-10-22 11:29:01",
+      "type": "ui_view_change",
+      "details": {
+        "view": "upload"
+      }
+    },
+    {
+      "time": "2026-10-22 11:29:03",
+      "type": "audit_run",
+      "details": {
+        "filename": "سجل المدفوعات اليومية 2025.xlsx",
+        "records": 1269,
+        "risk": 44,
+        "findings": {
+          "LED_DUPLICATE_PAYMENTS": 28,
+          "LED_NEGATIVE_AMOUNTS": 25,
+          "LED_STAT_OUTLIERS": 40,
+          "LED_SPLIT_PURCHASES": 36,
+          "LED_BELOW_THRESHOLD": 2,
+          "LED_YEAR_END": 40,
+          "LED_ZERO_AMOUNTS": 13,
+          "LED_ROUND_AMOUNTS": 5,
+          "high_count": 2,
+          "medium_count": 3,
+          "low_count": 3
+        }
+      }
+    },
+    {
+      "time": "2026-10-22 11:29:03",
+      "type": "ui_view_change",
+      "details": {
+        "view": "dashboard"
+      }
+    },
+    {
+      "time": "2026-10-22 11:45:27",
+      "type": "ui_client_connected",
+      "details": {
+        "protocol": "http:"
+      }
+    },
+    {
+      "time": "2026-10-22 11:45:27",
+      "type": "models_refresh",
+      "details": {
+        "ok": true,
+        "url": "http://127.0.0.1:11434",
+        "count": 4
+      }
+    },
+    {
+      "time": "2026-10-22 11:45:28",
+      "type": "ui_client_connected",
+      "details": {
+        "protocol": "http:"
+      }
+    },
+    {
+      "time": "2026-10-22 11:45:28",
+      "type": "models_refresh",
+      "details": {
+        "ok": true,
+        "url": "http://127.0.0.1:11434",
+        "count": 4
+      }
+    },
+    {
+      "time": "2026-10-22 11:54:00",
+      "type": "ui_client_connected",
+      "details": {
+        "protocol": "http:"
+      }
+    },
+    {
+      "time": "2026-10-22 11:54:00",
+      "type": "models_refresh",
+      "details": {
+        "ok": true,
+        "url": "http://127.0.0.1:11434",
+        "count": 4
+      }
+    },
+    {
+      "time": "2026-10-22 11:54:01",
+      "type": "ui_client_connected",
+      "details": {
+        "protocol": "http:"
+      }
+    },
+    {
+      "time": "2026-10-22 11:54:01",
+      "type": "models_refresh",
+      "details": {
+        "ok": true,
+        "url": "http://127.0.0.1:11434",
+        "count": 4
+      }
+    },
+    {
+      "time": "2026-10-22 11:54:01",
+      "type": "ui_client_connected",
+      "details": {
+        "protocol": "http:"
+      }
+    },
+    {
+      "time": "2026-10-22 11:54:01",
+      "type": "models_refresh",
+      "details": {
+        "ok": true,
+        "url": "http://127.0.0.1:11434",
+        "count": 4
+      }
+    },
+    {
+      "time": "2026-10-22 11:54:01",
+      "type": "ui_client_connected",
+      "details": {
+        "protocol": "http:"
+      }
+    },
+    {
+      "time": "2026-10-22 11:54:01",
+      "type": "models_refresh",
+      "details": {
+        "ok": true,
+        "url": "http://127.0.0.1:11434",
+        "count": 4
+      }
+    },
+    {
+      "time": "2026-10-22 11:54:15",
+      "type": "ui_view_change",
+      "details": {
+        "view": "settings"
+      }
+    },
+    {
+      "time": "2026-10-22 12:37:23",
+      "type": "ui_client_connected",
+      "details": {
+        "protocol": "http:"
+      }
+    },
+    {
+      "time": "2026-10-22 12:37:23",
+      "type": "models_refresh",
+      "details": {
+        "ok": true,
+        "url": "http://127.0.0.1:11434",
+        "count": 4
+      }
+    },
+    {
+      "time": "2026-10-22 12:38:31",
+      "type": "ui_view_change",
+      "details": {
+        "view": "upload"
+      }
+    },
+    {
+      "time": "2026-10-22 12:39:23",
+      "type": "audit_run",
+      "details": {
+        "filename": "سجل المدفوعات 2025.xlsx",
+        "records": 1239,
+        "risk": 49,
+        "findings": {
+          "LED_DUPLICATE_PAYMENTS": 33,
+          "LED_NEGATIVE_AMOUNTS": 9,
+          "LED_SPLIT_PURCHASES": 56,
+          "LED_STAT_OUTLIERS": 40,
+          "LED_CONCENTRATION": 10,
+          "LED_BELOW_THRESHOLD": 6,
+          "LED_ZERO_AMOUNTS": 24,
+          "LED_YEAR_END": 19,
+          "LED_ROUND_AMOUNTS": 5,
+          "high_count": 2,
+          "medium_count": 4,
+          "low_count": 3
+        }
+      }
+    },
+    {
+      "time": "2026-10-22 12:39:24",
+      "type": "ui_view_change",
+      "details": {
+        "view": "dashboard"
+      }
+    },
+    {
+      "time": "2026-10-22 12:40:30",
+      "type": "ui_view_change",
+      "details": {
+        "view": "upload"
+      }
+    },
+    {
+      "time": "2026-10-22 12:40:49",
+      "type": "ui_client_connected",
+      "details": {
+        "protocol": "http:"
+      }
+    },
+    {
+      "time": "2026-10-22 12:40:49",
+      "type": "models_refresh",
+      "details": {
+        "ok": true,
+        "url": "http://127.0.0.1:11434",
+        "count": 4
+      }
+    },
+    {
+      "time": "2026-10-22 12:40:50",
+      "type": "ui_client_connected",
+      "details": {
+        "protocol": "http:"
+      }
+    },
+    {
+      "time": "2026-10-22 12:40:50",
+      "type": "models_refresh",
+      "details": {
+        "ok": true,
+        "url": "http://127.0.0.1:11434",
+        "count": 4
+      }
+    },
+    {
+      "time": "2026-10-22 12:40:50",
+      "type": "ui_client_connected",
+      "details": {
+        "protocol": "http:"
+      }
+    },
+    {
+      "time": "2026-10-22 12:40:50",
+      "type": "models_refresh",
+      "details": {
+        "ok": true,
+        "url": "http://127.0.0.1:11434",
+        "count": 4
+      }
+    },
+    {
+      "time": "2026-10-22 12:40:50",
+      "type": "ui_client_connected",
+      "details": {
+        "protocol": "http:"
+      }
+    },
+    {
+      "time": "2026-10-22 12:40:50",
+      "type": "models_refresh",
+      "details": {
+        "ok": true,
+        "url": "http://127.0.0.1:11434",
+        "count": 4
+      }
+    },
+    {
+      "time": "2026-10-22 12:40:55",
+      "type": "audit_run",
+      "details": {
+        "filename": "سجل المدفوعات 2025.xlsx",
+        "records": 1239,
+        "risk": 49,
+        "findings": {
+          "LED_DUPLICATE_PAYMENTS": 33,
+          "LED_NEGATIVE_AMOUNTS": 9,
+          "LED_SPLIT_PURCHASES": 56,
+          "LED_STAT_OUTLIERS": 40,
+          "LED_CONCENTRATION": 10,
+          "LED_BELOW_THRESHOLD": 6,
+          "LED_ZERO_AMOUNTS": 24,
+          "LED_YEAR_END": 19,
+          "LED_ROUND_AMOUNTS": 5,
+          "high_count": 2,
+          "medium_count": 4,
+          "low_count": 3
+        }
+      }
+    },
+    {
+      "time": "2026-10-22 12:40:55",
+      "type": "ui_view_change",
+      "details": {
+        "view": "dashboard"
+      }
+    },
+    {
+      "time": "2026-10-22 12:43:54",
+      "type": "ui_language_change",
+      "details": {
+        "lang": "en"
+      }
+    },
+    {
+      "time": "2026-10-22 12:45:45",
+      "type": "ui_language_change",
+      "details": {
+        "lang": "ar"
+      }
+    },
+    {
+      "time": "2026-10-22 13:37:27",
+      "type": "ui_client_connected",
+      "details": {
+        "protocol": "http:"
+      }
+    },
+    {
+      "time": "2026-10-22 13:37:27",
+      "type": "models_refresh",
+      "details": {
+        "ok": true,
+        "url": "http://127.0.0.1:11434",
+        "count": 4
+      }
+    },
+    {
+      "time": "2026-10-22 13:38:07",
+      "type": "ui_view_change",
+      "details": {
+        "view": "upload"
+      }
+    },
+    {
+      "time": "2026-10-22 13:38:50",
+      "type": "audit_error",
+      "details": {
+        "filename": "24 مشروع.xlsx",
+        "reason": "no_recognised_data"
+      }
+    },
+    {
+      "time": "2026-10-22 13:40:27",
+      "type": "audit_error",
+      "details": {
+        "filename": "العينة راسمالي الباب الثاني قروض- احسان.xlsx",
+        "reason": "no_recognised_data"
+      }
+    },
+    {
+      "time": "2026-10-22 13:40:42",
+      "type": "audit_error",
+      "details": {
+        "filename": "العينة الباب الاول راسمالي خزينة.xlsx",
+        "reason": "no_recognised_data"
+      }
+    },
+    {
+      "time": "2026-10-22 13:40:57",
+      "type": "audit_error",
+      "details": {
+        "filename": "العينة راسمالي الباب الثاني خزينة- احسان.xlsx",
+        "reason": "no_recognised_data"
+      }
+    },
+    {
+      "time": "2026-10-22 13:41:09",
+      "type": "audit_error",
+      "details": {
+        "filename": "جاري باب اول.xlsx",
+        "reason": "no_recognised_data"
+      }
+    },
+    {
+      "time": "2026-10-22 13:41:32",
+      "type": "audit_error",
+      "details": {
+        "filename": "العينة راسمالي الباب الثاني قروض.xlsx",
+        "reason": "no_recognised_data"
+      }
+    },
+    {
+      "time": "2026-10-22 13:42:53",
+      "type": "ui_client_connected",
+      "details": {
+        "protocol": "http:"
+      }
+    },
+    {
+      "time": "2026-10-22 13:42:53",
+      "type": "models_refresh",
+      "details": {
+        "ok": true,
+        "url": "http://127.0.0.1:11434",
+        "count": 4
+      }
+    },
+    {
+      "time": "2026-10-22 13:42:54",
+      "type": "ui_view_change",
+      "details": {
+        "view": "upload"
+      }
+    },
+    {
+      "time": "2026-10-22 13:43:20",
+      "type": "audit_error",
+      "details": {
+        "filename": "الباب الاول نهائي.xlsx",
+        "reason": "no_recognised_data"
+      }
+    },
+    {
+      "time": "2026-10-22 13:43:29",
+      "type": "audit_error",
+      "details": {
+        "filename": "الباب الثاني-نهائي.xlsx",
+        "reason": "no_recognised_data"
+      }
+    },
+    {
+      "time": "2026-10-22 13:45:21",
+      "type": "audit_run",
+      "details": {
+        "filename": "الشؤون سجل فواتير النفقات 2025.xlsx",
+        "records": 1381,
+        "risk": 44,
+        "findings": {
+          "LED_DUPLICATE_PAYMENTS": 58,
+          "LED_NEGATIVE_AMOUNTS": 3,
+          "LED_STAT_OUTLIERS": 40,
+          "LED_SPLIT_PURCHASES": 34,
+          "LED_BELOW_THRESHOLD": 19,
+          "LED_ZERO_AMOUNTS": 40,
+          "LED_ROUND_AMOUNTS": 40,
+          "LED_YEAR_END": 18,
+          "high_count": 2,
+          "medium_count": 3,
+          "low_count": 3
+        }
+      }
+    },
+    {
+      "time": "2026-10-22 13:45:22",
+      "type": "ui_view_change",
+      "details": {
+        "view": "dashboard"
+      }
+    },
+    {
+      "time": "2026-10-22 13:53:39",
+      "type": "ui_client_connected",
+      "details": {
+        "protocol": "http:"
+      }
+    },
+    {
+      "time": "2026-10-22 13:53:39",
+      "type": "models_refresh",
+      "details": {
+        "ok": true,
+        "url": "http://127.0.0.1:11434",
+        "count": 4
+      }
+    },
+    {
+      "time": "2026-10-22 13:58:15",
+      "type": "ui_view_change",
+      "details": {
+        "view": "upload"
+      }
+    },
+    {
+      "time": "2026-10-22 14:00:59",
+      "type": "audit_run",
+      "details": {
+        "filename": "الحركات المالية لعام 2024.xlsx",
+        "records": 476505,
+        "risk": 56,
+        "findings": {
+          "LED_DUPLICATE_PAYMENTS": 2637,
+          "LED_WEEKEND_TRANSACTIONS": 114767,
+          "LED_SPLIT_PURCHASES": 764,
+          "LED_BELOW_THRESHOLD": 144,
+          "LED_STAT_OUTLIERS": 40,
+          "LED_ZERO_AMOUNTS": 40,
+          "LED_ROUND_AMOUNTS": 40,
+          "LED_YEAR_END": 40,
+          "high_count": 1,
+          "medium_count": 4,
+          "low_count": 3
+        }
+      }
+    },
+    {
+      "time": "2026-10-22 14:01:04",
+      "type": "ui_view_change",
+      "details": {
+        "view": "dashboard"
+      }
+    },
+    {
+      "time": "2026-10-22 14:14:18",
+      "type": "ui_view_change",
+      "details": {
+        "view": "upload"
+      }
+    },
+    {
+      "time": "2026-10-22 14:14:33",
+      "type": "audit_run",
+      "details": {
+        "filename": "القروض-عمولة الالتزام-وزارة المالية-2024.xlsx",
+        "records": 81,
+        "risk": 32,
+        "findings": {
+          "LED_DUPLICATE_PAYMENTS": 4,
+          "LED_WEEKEND_TRANSACTIONS": 18,
+          "LED_STAT_OUTLIERS": 14,
+          "LED_SPLIT_PURCHASES": 13,
+          "LED_CONCENTRATION": 5,
+          "LED_ROUND_AMOUNTS": 24,
+          "LED_YEAR_END": 21,
+          "high_count": 1,
+          "medium_count": 4,
+          "low_count": 2
+        }
+      }
+    },
+    {
+      "time": "2026-10-22 14:14:33",
+      "type": "ui_view_change",
+      "details": {
+        "view": "dashboard"
+      }
+    },
+    {
+      "time": "2026-10-22 14:15:41",
+      "type": "ui_view_change",
+      "details": {
+        "view": "ai"
+      }
+    },
+    {
+      "time": "2026-10-22 14:15:44",
+      "type": "ui_view_change",
+      "details": {
+        "view": "upload"
+      }
+    },
+    {
+      "time": "2026-10-22 14:15:45",
+      "type": "ui_view_change",
+      "details": {
+        "view": "dashboard"
+      }
+    },
+    {
+      "time": "2026-10-22 14:18:24",
+      "type": "ui_view_change",
+      "details": {
+        "view": "settings"
+      }
+    },
+    {
+      "time": "2026-10-23 19:40:58",
+      "type": "ui_client_connected",
+      "details": {
+        "protocol": "http:"
+      }
+    },
+    {
+      "time": "2026-10-23 19:40:58",
+      "type": "models_refresh",
+      "details": {
+        "ok": true,
+        "url": "http://127.0.0.1:11434",
+        "count": 4
+      }
+    },
+    {
+      "time": "2026-10-23 20:19:58",
+      "type": "server_started",
+      "details": {
+        "host": "0.0.0.0",
+        "port": 8000,
+        "pid": 21584,
+        "lan_urls": [
+          "192.168.100.20"
+        ]
+      }
+    },
+    {
+      "time": "2026-10-23 20:19:59",
+      "type": "ui_client_connected",
+      "details": {
+        "protocol": "file:"
+      }
+    },
+    {
+      "time": "2026-10-23 20:19:59",
+      "type": "models_refresh",
+      "details": {
+        "ok": true,
+        "url": "http://127.0.0.1:11434",
+        "count": 4
+      }
+    },
+    {
+      "time": "2026-10-23 20:20:05",
+      "type": "ui_client_connected",
+      "details": {
+        "protocol": "file:"
+      }
+    },
+    {
+      "time": "2026-10-23 20:20:05",
+      "type": "models_refresh",
+      "details": {
+        "ok": true,
+        "url": "http://127.0.0.1:11434",
+        "count": 4
+      }
+    },
+    {
+      "time": "2026-10-23 20:20:08",
+      "type": "ui_view_change",
+      "details": {
+        "view": "upload"
+      }
+    },
+    {
+      "time": "2026-10-23 20:20:12",
+      "type": "audit_run",
+      "details": {
+        "filename": "سجل المدفوعات اليومية 2025.xlsx",
+        "records": 1269,
+        "risk": 44,
+        "findings": {
+          "LED_DUPLICATE_PAYMENTS": 28,
+          "LED_NEGATIVE_AMOUNTS": 25,
+          "LED_STAT_OUTLIERS": 40,
+          "LED_SPLIT_PURCHASES": 36,
+          "LED_BELOW_THRESHOLD": 2,
+          "LED_YEAR_END": 40,
+          "LED_ZERO_AMOUNTS": 13,
+          "LED_ROUND_AMOUNTS": 5,
+          "high_count": 2,
+          "medium_count": 3,
+          "low_count": 3
+        }
+      }
+    },
+    {
+      "time": "2026-10-23 20:20:12",
+      "type": "ui_view_change",
+      "details": {
+        "view": "dashboard"
+      }
+    }
+  ],
+  "updated_at": "2026-10-23 20:20:12",
+  "updated_at_iso": "2026-10-23T20:20:12",
+  "last_event": {
+    "time": "2026-10-23 20:20:12",
+    "type": "ui_view_change",
+    "details": {
+      "view": "dashboard"
+    }
+  },
+  "config": {
+    "ollama_url": "http://127.0.0.1:11434",
+    "model": "qwen3:4b",
+    "language": "ar",
+    "max_ai_records": 40,
+    "temperature": 0.2,
+    "num_predict": 4096,
+    "request_timeout": 300,
+    "think": false
+  }
+}

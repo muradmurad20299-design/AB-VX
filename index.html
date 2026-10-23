@@ -1,0 +1,892 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>المدقق الذكي</title>
+
+    <link href="static/css/bootstrap.rtl.min.css" rel="stylesheet">
+    <link href="static/css/all.min.css" rel="stylesheet">
+    <link href="static/css/cairo.css" rel="stylesheet">
+    <script src="static/js/chart.umd.min.js"></script>
+
+    <style>
+        :root { --brand: #3b82f6; --ink: #1e293b; }
+        body { font-family: 'Cairo', sans-serif; background-color: #f4f6f9; color: #2c3e50; }
+        .sidebar { background: #1e293b; color: #fff; min-height: 100vh; }
+        .sidebar .nav-link { color: #94a3b8; padding: 12px 20px; font-weight: 600; cursor: pointer; border-radius: 0; }
+        .sidebar .nav-link:hover, .sidebar .nav-link.active { color: #fff; background: #334155; border-inline-start: 4px solid var(--brand); }
+        .card-kpi { border: none; border-radius: 12px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); transition: transform .2s; }
+        .card-kpi:hover { transform: translateY(-3px); }
+        .upload-area { border: 2px dashed #cbd5e1; border-radius: 16px; background: #fff; text-align: center; padding: 40px; cursor: pointer; transition: all .3s; }
+        .upload-area:hover, .upload-area.dragover { border-color: var(--brand); background: #eff6ff; }
+        .chart-box { position: relative; height: 300px; }
+        .ai-output { background: #0f172a; color: #e2e8f0; border-radius: 12px; padding: 20px; min-height: 200px; white-space: pre-wrap; line-height: 1.9; }
+        .ai-output h2, .ai-output h3 { color: #7dd3fc; font-size: 1.15rem; margin-top: 1rem; }
+        .ai-output strong { color: #fde68a; }
+        .ai-output ul { padding-inline-start: 1.4rem; }
+        .model-chip { font-size: .8rem; }
+        .section { display: none; }
+        .section.active { display: block; }
+        .badge-risk { font-size: 1rem; padding: .5rem .9rem; border-radius: 10px; }
+        .table-sm td, .table-sm th { white-space: nowrap; }
+        .brand-logo { width: 72px; height: 72px; object-fit: contain; background: #fff; border-radius: 14px; padding: 5px; margin-bottom: 10px; display: inline-block; }
+        .finding-card { border: none; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,.06); overflow: hidden; }
+        .finding-head { cursor: pointer; }
+        .sev-high { border-inline-start: 6px solid #dc2626; }
+        .sev-medium { border-inline-start: 6px solid #d97706; }
+        .sev-low { border-inline-start: 6px solid #2563eb; }
+        .sev-badge-high { background: #dc2626; } .sev-badge-medium { background: #d97706; } .sev-badge-low { background: #2563eb; }
+        .kpi-mini { background:#fff; border:1px solid #e2e8f0; border-radius:12px; padding:14px; height:100%; }
+        .kpi-mini .k-val { font-size:1.5rem; font-weight:700; }
+        .kpi-mini .k-lbl { font-size:.8rem; color:#64748b; font-weight:600; }
+        .chat-box { height: 420px; overflow-y: auto; background:#f8fafc; border:1px solid #e2e8f0; border-radius:12px; padding:16px; }
+        .msg { max-width: 82%; padding:10px 14px; border-radius:14px; margin-bottom:12px; line-height:1.8; white-space:pre-wrap; }
+        .msg.user { background:#dbeafe; margin-inline-start:auto; }
+        .msg.assistant { background:#fff; border:1px solid #e2e8f0; }
+        .msg.assistant h2, .msg.assistant h3 { color:#0f172a; font-size:1.05rem; margin:.5rem 0; }
+        #footerCredit {
+            position: fixed; bottom: 0; left: 0; right: 0; margin: 0; padding: 7px 10px;
+            text-align: center;
+            font-family: Arial, sans-serif; font-weight: bold; font-size: 8pt;
+            background: #1e293b; color: #fff;
+            z-index: 2000; pointer-events: none;
+            direction: rtl; unicode-bidi: plaintext;
+        }
+        body { padding-bottom: 34px; }
+    </style>
+</head>
+<body>
+<div id="footerCredit">تصميم وتطوير مديرية تكنولوجيا المعلومات - ديوان المحاسبة الأردني - بشار شعواطة & أحمد ابو شربك</div>
+<div class="container-fluid">
+    <div class="row">
+        <!-- ================= Sidebar ================= -->
+        <div class="col-md-2 sidebar p-0">
+            <div class="p-3 text-center border-bottom border-secondary">
+                <img id="brandLogo" class="brand-logo" alt="Logo">
+                <h5 class="m-0 fw-bold"><span data-i18n="appName">المدقق الذكي</span></h5>
+            </div>
+            <ul class="nav flex-column mt-3">
+                <li class="nav-item"><a class="nav-link active" data-view="dashboard"><i class="fa-solid fa-chart-pie me-2"></i><span data-i18n="navDashboard">لوحة التحليل</span></a></li>
+                <li class="nav-item"><a class="nav-link" data-view="upload"><i class="fa-solid fa-file-arrow-up me-2"></i><span data-i18n="navUpload">رفع الملفات</span></a></li>
+                <li class="nav-item"><a class="nav-link" data-view="ai"><i class="fa-solid fa-robot me-2"></i><span data-i18n="navAI">تقرير التدقيق الذكي</span></a></li>
+                <li class="nav-item"><a class="nav-link" data-view="chat"><i class="fa-solid fa-comments me-2"></i><span data-i18n="navChat">الدردشة التحليلية</span></a></li>
+                <li class="nav-item"><a class="nav-link" data-view="settings"><i class="fa-solid fa-gear me-2"></i><span data-i18n="navSettings">الإعدادات</span></a></li>
+            </ul>
+        </div>
+
+        <!-- ================= Main ================= -->
+        <div class="col-md-10 p-4">
+            <div class="d-flex justify-content-between align-items-start mb-4 flex-wrap gap-2">
+                <div>
+                    <h3 class="fw-bold mb-1" data-i18n="title">منظومة تدقيق البيانات المالية</h3>
+                    <p class="text-muted mb-0" data-i18n="subtitle">تحليل وتدقيق مبني على المخاطر وفق المعايير الدولية، مدعوم بالذكاء الاصطناعي المحلي</p>
+                </div>
+                <div class="d-flex align-items-center gap-2">
+                    <span id="connBadge" class="badge bg-secondary"><i class="fa-solid fa-circle-notch fa-spin"></i></span>
+                    <button class="btn btn-outline-primary btn-sm" id="langBtn" onclick="toggleLang()">English</button>
+                </div>
+            </div>
+
+            <div id="offlineBanner" class="alert alert-danger d-flex align-items-center gap-2 d-none">
+                <i class="fa-solid fa-plug-circle-xmark fa-lg"></i>
+                <div class="flex-grow-1">
+                    <div class="fw-bold" data-i18n="serverOffline">تعذّر الاتصال بالسيرفر</div>
+                    <div class="small" data-i18n="serverOfflineHint">تأكد من تشغيل السيرفر (python main.py) — سيُعاد الاتصال تلقائيًا عند رجوعه.</div>
+                </div>
+                <button class="btn btn-sm btn-light" onclick="pingServer()">
+                    <i class="fa-solid fa-rotate-right me-1"></i><span data-i18n="retryBtn">إعادة المحاولة</span>
+                </button>
+            </div>
+
+            <!-- ---------------- Dashboard ---------------- -->
+            <section id="view-dashboard" class="section active">
+                <div id="emptyDash" class="alert alert-light border text-center py-5">
+                    <i class="fa-solid fa-database display-5 text-secondary d-block mb-3"></i>
+                    <span data-i18n="emptyDash">لا توجد بيانات بعد. ارفع ملف Excel أو CSV للبدء.</span>
+                    <div class="mt-3"><button class="btn btn-primary btn-sm" onclick="showView('upload')"><i class="fa-solid fa-file-arrow-up me-1"></i><span data-i18n="goUpload">رفع ملف</span></button></div>
+                </div>
+
+                <div id="dashContent" style="display:none;">
+                    <!-- file info + risk -->
+                    <div class="card card-kpi bg-white p-3 mb-4">
+                        <div class="d-flex justify-content-between align-items-center flex-wrap gap-3">
+                            <div>
+                                <div class="text-muted small fw-bold" data-i18n="currentFile">الملف الحالي</div>
+                                <div class="fw-bold fs-5" id="fileNameBadge">—</div>
+                                <span class="badge bg-light text-dark border mt-1" id="fileTypeBadge">—</span>
+                            </div>
+                            <div class="text-center">
+                                <div class="text-muted small fw-bold" data-i18n="kpiRisk">درجة الخطورة</div>
+                                <div class="d-flex align-items-center gap-2 justify-content-center">
+                                    <h1 class="fw-bold m-0" id="riskValue">0%</h1>
+                                    <span id="riskBadge" class="badge badge-risk bg-success">—</span>
+                                </div>
+                            </div>
+                            <div class="text-center">
+                                <div class="text-muted small fw-bold" data-i18n="kpiRecords">السجلات المحللة</div>
+                                <h3 class="fw-bold m-0" id="recordsValue">0</h3>
+                            </div>
+                            <div class="text-center">
+                                <div class="text-muted small fw-bold" data-i18n="findingsCount">عدد الملاحظات</div>
+                                <h3 class="fw-bold m-0" id="findingsValue">0</h3>
+                            </div>
+                            <div>
+                                <button class="btn btn-outline-success btn-sm" onclick="exportReport()">
+                                    <i class="fa-solid fa-file-export me-1"></i><span data-i18n="exportBtn">تصدير التقرير</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- KPIs -->
+                    <h6 class="fw-bold mb-3"><i class="fa-solid fa-gauge-high text-primary me-1"></i><span data-i18n="kpiSection">المؤشرات الرئيسية</span></h6>
+                    <div class="row g-3 mb-4" id="kpiGrid"></div>
+
+                    <!-- Charts -->
+                    <div class="row g-3 mb-4" id="chartsRow"></div>
+
+                    <!-- Findings -->
+                    <h6 class="fw-bold mb-3"><i class="fa-solid fa-triangle-exclamation text-danger me-1"></i><span data-i18n="findingsSection">الملاحظات والمخالفات المكتشفة</span></h6>
+                    <div id="findingsWrap"></div>
+                </div>
+            </section>
+
+            <!-- ---------------- Upload ---------------- -->
+            <section id="view-upload" class="section">
+                <div class="upload-area mb-4" id="uploadArea">
+                    <i class="fa-solid fa-cloud-arrow-up text-primary display-4 mb-3"></i>
+                    <h5 data-i18n="uploadHint">اسحب ملف Excel أو CSV هنا أو اضغط للاختيار</h5>
+                    <p class="text-muted small mb-0" data-i18n="uploadSupport">يدعم ملفات XLSX, XLSM, XLS, XLSB, CSV — بأي أسماء أو ترتيب للأعمدة (عربي/إنجليزي)</p>
+                    <input type="file" id="fileInput" accept=".csv,.xlsx,.xlsm,.xls,.xlsb,.txt" style="display:none;">
+                </div>
+                <div id="uploadStatus" class="mb-3"></div>
+            </section>
+
+            <!-- ---------------- AI Analysis ---------------- -->
+            <section id="view-ai" class="section">
+                <div class="card border-0 shadow-sm p-4">
+                    <div class="d-flex justify-content-between align-items-center flex-wrap gap-2 mb-3">
+                        <h5 class="fw-bold mb-0"><i class="fa-solid fa-robot text-primary me-2"></i><span data-i18n="aiTitle">تقرير التدقيق الذكي</span></h5>
+                        <span class="badge bg-secondary" id="aiModelBadge">—</span>
+                    </div>
+                    <div class="row g-3 align-items-end mb-3">
+                        <div class="col-md-5">
+                            <label class="form-label small fw-bold" data-i18n="aiModel">الموديل</label>
+                            <input type="text" id="aiModel" class="form-control form-control-sm" list="modelList" autocomplete="off">
+                        </div>
+                        <div class="col-md-3">
+                            <label class="form-label small fw-bold" data-i18n="aiLang">لغة التحليل</label>
+                            <select id="aiLang" class="form-select form-select-sm">
+                                <option value="ar">العربية</option>
+                                <option value="en">English</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <button class="btn btn-primary w-100" id="aiRunBtn" onclick="runAI()">
+                                <i class="fa-solid fa-wand-magic-sparkles me-1"></i><span data-i18n="aiRun">تشغيل التحليل الذكي</span>
+                            </button>
+                        </div>
+                    </div>
+                    <div id="aiHint" class="alert alert-secondary small mb-3" data-i18n="aiHint">ارفع ملفاً أولاً من صفحة «رفع الملفات»، ثم شغّل التحليل الذكي.</div>
+                    <div id="aiThinking" class="small text-muted mb-2" style="display:none;">
+                        <i class="fa-solid fa-brain me-1"></i><span data-i18n="aiThinking">تفكير الموديل:</span>
+                        <details class="mt-1"><summary data-i18n="aiShowThinking">عرض التفكير</summary>
+                            <div id="aiThinkingText" class="text-secondary mt-1" style="white-space:pre-wrap;font-size:.85rem;max-height:180px;overflow:auto;"></div>
+                        </details>
+                    </div>
+                    <div id="aiOutput" class="ai-output" style="display:none;"></div>
+                </div>
+            </section>
+
+            <!-- ---------------- Chat ---------------- -->
+            <section id="view-chat" class="section">
+                <div class="card border-0 shadow-sm p-4">
+                    <div class="d-flex justify-content-between align-items-center flex-wrap gap-2 mb-3">
+                        <h5 class="fw-bold mb-0"><i class="fa-solid fa-comments text-primary me-2"></i><span data-i18n="chatTitle">الدردشة التحليلية</span></h5>
+                        <span class="badge bg-secondary" id="chatModelBadge">—</span>
+                    </div>
+                    <div id="chatHint" class="alert alert-secondary small" data-i18n="chatHint">ارفع ملفاً ثم اسأل أسئلة تحليلية على أرقامه (مثال: ما أكثر البنود تهديداً بالعجز؟).</div>
+                    <div id="chatBox" class="chat-box mb-3"></div>
+                    <div class="input-group">
+                        <input type="text" id="chatInput" class="form-control" placeholder="اكتب سؤالك عن الملف...">
+                        <button class="btn btn-primary" id="chatSend" onclick="sendChat()"><i class="fa-solid fa-paper-plane me-1"></i><span data-i18n="chatSend">إرسال</span></button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ---------------- Settings ---------------- -->
+            <section id="view-settings" class="section">
+                <div class="card border-0 shadow-sm p-4" style="max-width:720px;">
+                    <h5 class="fw-bold mb-4"><i class="fa-solid fa-gear text-primary me-2"></i><span data-i18n="settingsTitle">إعدادات الاتصال</span></h5>
+
+                    <div class="mb-3">
+                        <label class="form-label fw-bold" data-i18n="ollamaUrl">رابط Platform</label>
+                        <input type="text" id="cfgUrl" class="form-control" placeholder="http://127.0.0.1:11434">
+                        <div class="form-text" data-i18n="ollamaUrlHelp">يمكن ربط البرنامج بأي جهاز آخر يشغّل Platform، مثال: http://192.168.1.50:11434</div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label fw-bold" data-i18n="modelLabel">الموديل</label>
+                        <div class="input-group">
+                            <select id="cfgModel" class="form-select"></select>
+                            <datalist id="modelList"></datalist>
+                            <button class="btn btn-outline-secondary" type="button" id="testBtn" onclick="testConnection()"><i class="fa-solid fa-plug me-1"></i><span data-i18n="testBtn">اختبار الاتصال</span></button>
+                        </div>
+                        <div class="form-text" id="modelHelp"></div>
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="form-label fw-bold" data-i18n="defaultLang">اللغة الافتراضية</label>
+                        <select id="cfgLang" class="form-select">
+                            <option value="ar">العربية</option>
+                            <option value="en">English</option>
+                        </select>
+                    </div>
+
+                    <div class="d-flex align-items-center gap-3">
+                        <button class="btn btn-primary" id="saveBtn" onclick="saveSettings()"><i class="fa-solid fa-floppy-disk me-1"></i><span data-i18n="saveBtn">حفظ الإعدادات</span></button>
+                        <span id="saveMsg" class="text-success small"></span>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>
+
+<script>
+/* =========================================================================
+   Configuration & state
+   ========================================================================= */
+function resolveApiBase() {
+    try {
+        const params = new URLSearchParams(location.search);
+        const fromQuery = params.get('server') || params.get('api') || params.get('host');
+        if (fromQuery) { localStorage.setItem('audit_server_url', fromQuery.trim()); }
+        const stored = localStorage.getItem('audit_server_url');
+        if (stored) { return stored.trim().replace(/\/+$/, ''); }
+        if (location.protocol !== 'file:') { return ''; }
+        let ans = prompt('أدخل عنوان الخادم المركزي (مثال: http://192.168.1.45:8000)\nEnter central server address:', 'http://127.0.0.1:8000');
+        if (ans) { localStorage.setItem('audit_server_url', ans.trim()); return ans.trim().replace(/\/+$/, ''); }
+        return 'http://127.0.0.1:8000';
+    } catch (e) {
+        return location.protocol === 'file:' ? 'http://127.0.0.1:8000' : '';
+    }
+}
+let API_BASE = resolveApiBase();
+const state = { lang: 'ar', config: {}, report: null, reportId: null, charts: {}, ollama: { ok: false, models: [] }, chat: [] };
+
+/* =========================================================================
+   Translations (Arabic / English)
+   ========================================================================= */
+const I18N = {
+    ar: {
+        appName: 'المدقق الذكي',
+        navDashboard: 'لوحة التحليل', navUpload: 'رفع الملفات', navAI: 'تقرير التدقيق الذكي', navChat: 'الدردشة التحليلية', navSettings: 'الإعدادات',
+        title: 'المدقق الذكي',
+        subtitle: 'تحليل وتدقيق مبني على المخاطر وفق المعايير الدولية، مدعوم بالذكاء الاصطناعي المحلي',
+        currentFile: 'الملف الحالي', kpiRisk: 'درجة الخطورة', kpiRecords: 'السجلات المحللة', findingsCount: 'عدد الملاحظات',
+        kpiSection: 'المؤشرات الرئيسية', findingsSection: 'الملاحظات والمخالفات المكتشفة',
+        exportBtn: 'تصدير التقرير',
+        emptyDash: 'لا توجد بيانات بعد. ارفع ملف Excel أو CSV للبدء.', goUpload: 'رفع ملف',
+        uploadHint: 'اسحب ملف Excel أو CSV هنا أو اضغط للاختيار',
+        uploadSupport: 'يدعم ملفات XLSX, XLSM, XLS, XLSB, CSV — بأي أسماء أو ترتيب للأعمدة (عربي/إنجليزي)',
+        aiTitle: 'تقرير التدقيق الذكي', aiModel: 'الموديل', aiLang: 'لغة التحليل', aiRun: 'تشغيل التحليل الذكي',
+        aiHint: 'ارفع ملفاً أولاً من صفحة «رفع الملفات»، ثم شغّل التحليل الذكي.',
+        aiAnalyzing: 'جارٍ إعداد تقرير التدقيق عبر الموديل المحلي، قد يستغرق بعض الوقت...',
+        aiThinking: 'تفكير الموديل:', aiShowThinking: 'عرض التفكير',
+        chatTitle: 'الدردشة التحليلية', chatHint: 'ارفع ملفاً ثم اسأل أسئلة تحليلية على أرقامه (مثال: ما أكثر البنود تهديداً بالعجز؟).',
+        chatSend: 'إرسال', chatYou: 'أنت', chatPlaceholder: 'اكتب سؤالك عن الملف...',
+        settingsTitle: 'إعدادات الاتصال', ollamaUrl: 'رابط Platform',
+        ollamaUrlHelp: 'يمكن ربط البرنامج بأي جهاز آخر يشغّل Platform، مثال: http://192.168.1.50:11434',
+        modelLabel: 'الموديل', testBtn: 'اختبار الاتصال', defaultLang: 'اللغة الافتراضية', saveBtn: 'حفظ الإعدادات',
+        noFindings: 'لا توجد ملاحظات في هذا الملف. ✅',
+        reading: 'جارٍ قراءة الملف وتدقيقه...', analyzing: 'جارٍ التحليل...',
+        connected: 'متصل', disconnected: 'غير متصل', modelsFound: 'موديل متاح', saved: 'تم الحفظ بنجاح',
+        selModel: 'اختر موديلاً', noModels: 'لا توجد موديلات — تحقق من الرابط.',
+        errServer: 'تعذّر الاتصال بالسيرفر. تأكد من تشغيل Uvicorn.',
+        errFile: 'صيغة الملف غير مدعومة. الرجاء رفع CSV أو Excel.',
+        errRead: 'تعذّرت قراءة الملف. تأكد أنه ملف Excel/CSV صالح.',
+        errNoData: 'لم يتم التعرف على بيانات قابلة للتحليل في هذا الملف.',
+        errAI: 'تعذّر تشغيل التحليل الذكي: ', errNoFileAI: 'يرجى رفع ملف قبل تشغيل التحليل الذكي.',
+        errNoReport: 'يرجى رفع ملف أولاً.',
+        serverOffline: 'تعذّر الاتصال بالسيرفر', serverOfflineHint: 'تأكد من تشغيل السيرفر (python main.py) — سيُعاد الاتصال تلقائيًا عند رجوعه.',
+        retryBtn: 'إعادة المحاولة',
+        riskLow: 'منخفضة', riskMedium: 'متوسطة', riskHigh: 'عالية',
+        sevHigh: 'خطورة عالية', sevMedium: 'خطورة متوسطة', sevLow: 'خطورة منخفضة',
+        countLbl: 'العدد', standard: 'المعيار', itemsLbl: 'العناصر', showTable: 'عرض التفاصيل', hideTable: 'إخفاء التفاصيل',
+        typeFinancialPosition: 'مواقف مالية', typeLedger: 'سجل حركات', typeMixed: 'مواقف مالية + سجلات حركات', typeUnknown: 'غير محدد',
+        chartsTitle: 'الرسوم التحليلية',
+    },
+    en: {
+        appName: 'Smart Auditor',
+        navDashboard: 'Dashboard', navUpload: 'Upload Files', navAI: 'AI Audit Report', navChat: 'Analytical Chat', navSettings: 'Settings',
+        title: 'Smart Auditor',
+        subtitle: 'Risk-based financial audit aligned with international standards, powered by local AI',
+        currentFile: 'Current file', kpiRisk: 'Risk score', kpiRecords: 'Records analysed', findingsCount: 'Findings',
+        kpiSection: 'Key indicators', findingsSection: 'Detected findings & violations',
+        exportBtn: 'Export report',
+        emptyDash: 'No data yet. Upload a CSV or Excel file to begin.', goUpload: 'Upload File',
+        uploadHint: 'Drag & drop an Excel or CSV file here, or click to choose',
+        uploadSupport: 'Supports XLSX, XLSM, XLS, XLSB, CSV — any column names/order (Arabic/English)',
+        aiTitle: 'AI Audit Report', aiModel: 'Model', aiLang: 'Analysis Language', aiRun: 'Run AI Analysis',
+        aiHint: 'Upload a file first, then run the AI analysis.',
+        aiAnalyzing: 'Generating the audit report with the local model, this may take a moment...',
+        aiThinking: 'Model reasoning:', aiShowThinking: 'Show reasoning',
+        chatTitle: 'Analytical Chat', chatHint: 'Upload a file then ask analytical questions grounded in its numbers.',
+        chatSend: 'Send', chatYou: 'You', chatPlaceholder: 'Ask a question about the file...',
+        settingsTitle: 'Connection Settings', ollamaUrl: 'Platform URL',
+        ollamaUrlHelp: 'Point the app to any device running Platform, e.g. http://192.168.1.50:11434',
+        modelLabel: 'Model', testBtn: 'Test Connection', defaultLang: 'Default Language', saveBtn: 'Save Settings',
+        noFindings: 'No findings in this file. ✅',
+        reading: 'Reading and auditing the file...', analyzing: 'Analyzing...',
+        connected: 'Connected', disconnected: 'Disconnected', modelsFound: 'models available', saved: 'Saved successfully',
+        selModel: 'Select a model', noModels: 'No models found — check the URL.',
+        errServer: 'Could not reach the server. Make sure Uvicorn is running.',
+        errFile: 'Unsupported file format. Please upload CSV or Excel.',
+        errRead: 'Could not read the file. Make sure it is a valid Excel/CSV file.',
+        errNoData: 'No analysable data was recognised in this file.',
+        errAI: 'AI analysis failed: ', errNoFileAI: 'Please upload a file before running the AI analysis.',
+        errNoReport: 'Please upload a file first.',
+        serverOffline: 'Cannot reach the server', serverOfflineHint: 'Make sure the server is running (python main.py) — it will reconnect automatically.',
+        retryBtn: 'Retry',
+        riskLow: 'Low', riskMedium: 'Medium', riskHigh: 'High',
+        sevHigh: 'High risk', sevMedium: 'Medium risk', sevLow: 'Low risk',
+        countLbl: 'Count', standard: 'Standard', itemsLbl: 'Items', showTable: 'Show details', hideTable: 'Hide details',
+        typeFinancialPosition: 'Financial position', typeLedger: 'Transaction ledger', typeMixed: 'Position + ledger', typeUnknown: 'Unknown',
+        chartsTitle: 'Analytical charts',
+    }
+};
+const t = (k) => (I18N[state.lang] && I18N[state.lang][k]) || k;
+
+/* KPI labels */
+const KPI_LABELS = {
+    total_items: ['عدد البنود', 'Total items'],
+    total_budget: ['إجمالي المخصصات', 'Total budget'],
+    total_paid: ['إجمالي المدفوع', 'Total paid'],
+    utilization_pct: ['نسبة التنفيذ %', 'Utilization %'],
+    items_over_90: ['بنود تجاوزت 90%', 'Items ≥ 90%'],
+    items_over_100: ['بنود تجاوزت 100%', 'Items > 100%'],
+    items_zero_movement: ['بنود بلا حركة', 'Idle items'],
+    total_records: ['عدد الحركات', 'Transactions'],
+    total_amount: ['إجمالي المبالغ', 'Total amount'],
+    average_amount: ['متوسط المبلغ', 'Average amount'],
+    max_amount: ['أعلى مبلغ', 'Max amount'],
+    duplicate_groups: ['مجموعات مكررة', 'Duplicate groups'],
+    split_groups: ['حالات تجزئة', 'Split groups'],
+    weekend_count: ['حركات العطل', 'Weekend txns'],
+    negative_count: ['مبالغ سالبة', 'Negative amounts'],
+    distinct_beneficiaries: ['عدد المستفيدين', 'Beneficiaries'],
+};
+/* item table column labels */
+const ITEM_LABELS = {
+    beneficiary: ['المستفيد', 'Beneficiary'], amount: ['المبلغ', 'Amount'], occurrences: ['عدد التكرار', 'Occurrences'],
+    dates: ['التواريخ', 'Dates'], check_no: ['أرقام الشيكات', 'Cheque no.'], sheets: ['الأوراق', 'Sheets'],
+    week_start: ['بداية الأسبوع', 'Week start'], weekly_total: ['إجمالي الأسبوع', 'Weekly total'], threshold: ['السقف', 'Threshold'],
+    count: ['العدد', 'Count'], invoice_no: ['رقم الفاتورة', 'Invoice no.'], beneficiaries: ['المستفيدون', 'Beneficiaries'],
+    amounts: ['المبالغ', 'Amounts'], date: ['التاريخ', 'Date'], day: ['اليوم', 'Day'], sheet: ['الورقة', 'Sheet'],
+    account_code: ['رمز الحساب', 'Account code'], item_name: ['البند', 'Item'], year: ['السنة', 'Year'],
+    estimated_budget: ['المخصصات المقدرة', 'Estimated budget'], financial_orders: ['الأوامر المالية', 'Financial orders'],
+    paid: ['المدفوع', 'Paid'], balance: ['الرصيد', 'Balance'], spend_ratio: ['نسبة الإنفاق %', 'Spend ratio %'],
+    adjusted: ['المقدر وتعديلاته', 'Adjusted'], delta: ['الفرق', 'Delta'], from_year: ['من سنة', 'From'],
+    to_year: ['إلى سنة', 'To'], ratio_from: ['نسبة سابقة', 'Prev ratio'], ratio_to: ['نسبة لاحقة', 'New ratio'],
+    budget_from: ['مخصص سابق', 'Prev budget'], budget_to: ['مخصص لاحق', 'New budget'],
+    total: ['الإجمالي', 'Total'], share_pct: ['النسبة %', 'Share %'], sheet: ['الورقة', 'Sheet'],
+};
+const kpiLabel = (k) => (KPI_LABELS[k] ? KPI_LABELS[k][state.lang === 'ar' ? 0 : 1] : k);
+const itemLabel = (k) => (ITEM_LABELS[k] ? ITEM_LABELS[k][state.lang === 'ar' ? 0 : 1] : k);
+
+/* =========================================================================
+   Language
+   ========================================================================= */
+function applyLanguage() {
+    document.documentElement.lang = state.lang;
+    document.documentElement.dir = state.lang === 'ar' ? 'rtl' : 'ltr';
+    document.querySelectorAll('[data-i18n]').forEach(el => { el.textContent = t(el.dataset.i18n); });
+    document.getElementById('langBtn').textContent = state.lang === 'ar' ? 'English' : 'العربية';
+    document.getElementById('chatInput').placeholder = t('chatPlaceholder');
+    setConnBadge(state.ollama.ok);
+    renderModelOptions();
+    if (state.report) renderReport(state.report);
+    renderChat();
+}
+function toggleLang() {
+    state.lang = state.lang === 'ar' ? 'en' : 'ar';
+    localStorage.setItem('audit_lang', state.lang);
+    applyLanguage();
+    logEvent('language_change', { lang: state.lang });
+}
+
+/* =========================================================================
+   Navigation
+   ========================================================================= */
+function showView(name) {
+    document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+    const el = document.getElementById('view-' + name);
+    if (el) el.classList.add('active');
+    document.querySelectorAll('.sidebar .nav-link').forEach(a => a.classList.toggle('active', a.dataset.view === name));
+    logEvent('view_change', { view: name });
+}
+document.querySelectorAll('.sidebar .nav-link').forEach(link => {
+    link.addEventListener('click', (e) => { e.preventDefault(); showView(link.dataset.view); });
+});
+
+/* =========================================================================
+   Ollama connection helpers
+   ========================================================================= */
+function setConnBadge(ok) {
+    const b = document.getElementById('connBadge');
+    if (ok) { b.className = 'badge bg-success'; b.innerHTML = '<i class="fa-solid fa-circle-check me-1"></i>' + t('connected'); }
+    else { b.className = 'badge bg-danger'; b.innerHTML = '<i class="fa-solid fa-plug-circle-xmark me-1"></i>' + t('disconnected'); }
+}
+async function fetchOllamaModels(url) {
+    try {
+        const q = url ? '?url=' + encodeURIComponent(url) : '';
+        const res = await fetch(API_BASE + '/ollama/models' + q);
+        const data = await res.json();
+        state.ollama = { ok: !!data.ok, models: data.models || [] };
+    } catch (e) { state.ollama = { ok: false, models: [] }; }
+    setConnBadge(state.ollama.ok);
+    renderModelOptions();
+    return state.ollama;
+}
+function renderModelOptions() {
+    const models = state.ollama.models || [];
+    const dl = document.getElementById('modelList');
+    if (dl) dl.innerHTML = models.map(m => '<option value="' + m + '">').join('');
+
+    // Settings model dropdown — lists every model available from Ollama and keeps
+    // the currently-configured model selectable even if Ollama hasn't listed it.
+    const cfgSel = document.getElementById('cfgModel');
+    if (cfgSel) {
+        const cur = state.config.model || '';
+        let html = '';
+        if (models.length) {
+            if (cur && models.indexOf(cur) === -1) {
+                html += '<option value="' + escapeHtml(cur) + '">' + escapeHtml(cur) + '</option>';
+            }
+            html += models.map(m => '<option value="' + escapeHtml(m) + '">' + escapeHtml(m) + '</option>').join('');
+        } else {
+            html = '<option value="">' + (cur ? escapeHtml(cur) : t('noModels')) + '</option>';
+        }
+        cfgSel.innerHTML = html;
+        if (cur) cfgSel.value = cur;
+    }
+
+    const aiSel = document.getElementById('aiModel');
+    if (aiSel) { aiSel.placeholder = models.length ? t('selModel') : t('noModels'); if (state.config.model) aiSel.value = state.config.model; }
+    document.getElementById('modelHelp').textContent = state.ollama.ok ? (models.length + ' ' + t('modelsFound')) : t('noModels');
+    const aiBadge = document.getElementById('aiModelBadge');
+    if (aiBadge) aiBadge.textContent = state.config.model || '—';
+    const chatBadge = document.getElementById('chatModelBadge');
+    if (chatBadge) chatBadge.textContent = state.config.model || '—';
+}
+
+/* =========================================================================
+   Settings
+   ========================================================================= */
+async function loadSettings() {
+    try { const res = await fetch(API_BASE + '/settings'); state.config = await res.json(); }
+    catch (e) { state.config = { ollama_url: 'http://127.0.0.1:11434', model: '', language: 'ar' }; }
+    document.getElementById('cfgUrl').value = state.config.ollama_url || '';
+    document.getElementById('cfgLang').value = state.config.language || 'ar';
+    state.lang = state.config.language || state.lang;
+    await fetchOllamaModels(state.config.ollama_url);
+    applyLanguage();
+}
+async function saveSettings() {
+    const payload = {
+        ollama_url: document.getElementById('cfgUrl').value.trim(),
+        model: document.getElementById('cfgModel').value,
+        language: document.getElementById('cfgLang').value,
+    };
+    const msg = document.getElementById('saveMsg');
+    try {
+        const res = await fetch(API_BASE + '/settings', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
+        state.config = await res.json();
+        state.lang = state.config.language || state.lang;
+        localStorage.setItem('audit_lang', state.lang);
+        msg.textContent = t('saved');
+        setTimeout(() => msg.textContent = '', 2500);
+        await fetchOllamaModels(state.config.ollama_url);
+        applyLanguage();
+    } catch (e) { msg.className = 'text-danger small'; msg.textContent = t('errServer'); }
+}
+async function testConnection() {
+    const url = document.getElementById('cfgUrl').value.trim();
+    const btn = document.getElementById('testBtn');
+    btn.disabled = true;
+    const r = await fetchOllamaModels(url);
+    btn.disabled = false;
+    if (!r.ok) alert(t('disconnected') + ' — ' + (state.config.ollama_url || url));
+}
+
+/* =========================================================================
+   File upload + audit
+   ========================================================================= */
+const uploadArea = document.getElementById('uploadArea');
+const fileInput = document.getElementById('fileInput');
+uploadArea.addEventListener('click', () => fileInput.click());
+uploadArea.addEventListener('dragover', e => { e.preventDefault(); uploadArea.classList.add('dragover'); });
+uploadArea.addEventListener('dragleave', () => uploadArea.classList.remove('dragover'));
+uploadArea.addEventListener('drop', e => { e.preventDefault(); uploadArea.classList.remove('dragover'); if (e.dataTransfer.files[0]) handleFile(e.dataTransfer.files[0]); });
+fileInput.addEventListener('change', () => { if (fileInput.files[0]) handleFile(fileInput.files[0]); });
+
+async function handleFile(file) {
+    const status = document.getElementById('uploadStatus');
+    status.innerHTML = '<div class="alert alert-info"><i class="fa-solid fa-circle-notch fa-spin me-2"></i>' + t('reading') + '</div>';
+    const formData = new FormData();
+    formData.append('file', file);
+    try {
+        const res = await fetch(API_BASE + '/audit/', { method: 'POST', body: formData });
+        const data = await res.json();
+        if (data.error) {
+            const map = { unsupported_format: t('errFile'), read_failed: t('errRead'), no_recognised_data: t('errNoData') };
+            status.innerHTML = '<div class="alert alert-danger">' + (map[data.error] || data.error) + '</div>';
+            return;
+        }
+        state.report = data;
+        state.reportId = data.report_id;
+        state.chat = [];
+        status.innerHTML = '<div class="alert alert-success"><i class="fa-solid fa-circle-check me-2"></i>' +
+            escapeHtml(file.name) + ' — ' + data.total_records_scanned + ' ' + (state.lang === 'ar' ? 'سجل' : 'records') + '</div>';
+        document.getElementById('aiHint').style.display = 'none';
+        document.getElementById('chatHint').style.display = 'none';
+        renderReport(data);
+        showView('dashboard');
+    } catch (e) {
+        status.innerHTML = '<div class="alert alert-danger">' + t('errServer') + '</div>';
+    }
+}
+
+/* =========================================================================
+   Rendering
+   ========================================================================= */
+function escapeHtml(s) { return String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c])); }
+function fmtNum(v) {
+    if (typeof v === 'number') return v.toLocaleString(state.lang === 'ar' ? 'en-US' : 'en-US', { maximumFractionDigits: 2 });
+    return v;
+}
+function riskLabel(score) {
+    if (score >= 60) return { label: t('riskHigh'), cls: 'bg-danger' };
+    if (score >= 30) return { label: t('riskMedium'), cls: 'bg-warning text-dark' };
+    return { label: t('riskLow'), cls: 'bg-success' };
+}
+const FILE_TYPE_LABEL = { financial_position: 'typeFinancialPosition', ledger: 'typeLedger', mixed: 'typeMixed' };
+
+function renderReport(data) {
+    document.getElementById('emptyDash').style.display = 'none';
+    document.getElementById('dashContent').style.display = 'block';
+    document.getElementById('fileNameBadge').textContent = data.filename || '—';
+    document.getElementById('fileTypeBadge').textContent = t(FILE_TYPE_LABEL[data.file_type] || 'typeUnknown');
+    document.getElementById('recordsValue').textContent = fmtNum(data.total_records_scanned || 0);
+    document.getElementById('findingsValue').textContent = (data.findings || []).length;
+
+    const risk = data.risk_score || 0;
+    document.getElementById('riskValue').textContent = risk + '%';
+    const rl = riskLabel(risk);
+    const badge = document.getElementById('riskBadge');
+    badge.className = 'badge badge-risk ' + rl.cls;
+    badge.textContent = rl.label;
+
+    renderKpis(data.kpis || {});
+    renderCharts(data);
+    renderFindings(data.findings || []);
+}
+
+function renderKpis(kpis) {
+    const grid = document.getElementById('kpiGrid');
+    const keys = Object.keys(kpis);
+    if (!keys.length) { grid.innerHTML = '<div class="text-muted">—</div>'; return; }
+    grid.innerHTML = keys.map(k => {
+        const v = kpis[k];
+        return '<div class="col-md-3 col-sm-6"><div class="kpi-mini"><div class="k-val">' + escapeHtml(fmtNum(v)) +
+            '</div><div class="k-lbl">' + escapeHtml(kpiLabel(k)) + '</div></div></div>';
+    }).join('');
+}
+
+function renderCharts(data) {
+    const row = document.getElementById('chartsRow');
+    row.innerHTML = '';
+    if (state.charts) Object.values(state.charts).forEach(c => { try { c.destroy(); } catch (e) { } });
+    state.charts = {};
+    const charts = data.charts || {};
+    const specs = [];
+    if (charts.position) {
+        specs.push({ id: 'chartTopRatio', title: state.lang === 'ar' ? 'أعلى بنود بنسبة الإنفاق %' : 'Top items by spend ratio %', data: charts.position.top_ratio, type: 'bar', color: '#ef4444' });
+        specs.push({ id: 'chartBudgetYear', title: state.lang === 'ar' ? 'المخصصات حسب السنة' : 'Budget by year', data: charts.position.by_year, type: 'bar', color: '#3b82f6' });
+    }
+    if (charts.ledger) {
+        specs.push({ id: 'chartMonthly', title: state.lang === 'ar' ? 'المبالغ الشهرية' : 'Monthly amounts', data: charts.ledger.monthly, type: 'line', color: '#10b981' });
+        specs.push({ id: 'chartTopBen', title: state.lang === 'ar' ? 'أعلى المستفيدين' : 'Top beneficiaries', data: charts.ledger.top_beneficiaries, type: 'bar', color: '#8b5cf6', horizontal: true });
+    }
+    if (!specs.length) { row.innerHTML = ''; return; }
+    row.innerHTML = specs.map(s =>
+        '<div class="col-md-6"><div class="card card-kpi bg-white p-3"><h6 class="fw-bold mb-3">' + escapeHtml(s.title) +
+        '</h6><div class="chart-box"><canvas id="' + s.id + '"></canvas></div></div></div>').join('');
+
+    specs.forEach(s => {
+        const canvas = document.getElementById(s.id);
+        if (!canvas || !s.data) return;
+        const labels = s.data.labels || [];
+        const values = s.data.values || [];
+        if (!labels.length) return;
+        const horizontal = !!s.horizontal;
+        state.charts[s.id] = new Chart(canvas, {
+            type: s.type,
+            data: {
+                labels,
+                datasets: [{
+                    label: s.title, data: values,
+                    backgroundColor: s.type === 'line' ? 'rgba(16,185,129,.2)' : s.color,
+                    borderColor: s.color, borderWidth: s.type === 'line' ? 2 : 0, fill: s.type === 'line', tension: .3,
+                    borderRadius: s.type === 'bar' ? 6 : 0,
+                }]
+            },
+            options: {
+                responsive: true, maintainAspectRatio: false, indexAxis: horizontal ? 'y' : 'x',
+                plugins: { legend: { display: false } },
+                scales: { x: { ticks: { autoSkip: true, maxRotation: 45, minRotation: 0 } }, y: { beginAtZero: true } }
+            }
+        });
+    });
+}
+
+function itemValue(v) {
+    if (v === null || v === undefined) return '';
+    if (Array.isArray(v)) return v.map(x => (typeof x === 'object' ? JSON.stringify(x) : x)).join('، ');
+    if (typeof v === 'number') return fmtNum(v);
+    return String(v);
+}
+
+function renderFindingTable(items) {
+    if (!items || !items.length) return '';
+    const keys = [];
+    items.forEach(it => { if (it && typeof it === 'object') Object.keys(it).forEach(k => { if (!keys.includes(k)) keys.push(k); }); });
+    const head = keys.map(k => '<th>' + escapeHtml(itemLabel(k)) + '</th>').join('');
+    const body = items.map(it => '<tr>' + keys.map(k => '<td>' + escapeHtml(itemValue(it[k])) + '</td>').join('') + '</tr>').join('');
+    return '<div class="table-responsive mt-2"><table class="table table-sm table-hover table-bordered align-middle mb-0"><thead class="table-light"><tr>' + head + '</tr></thead><tbody>' + body + '</tbody></table></div>';
+}
+
+function renderFindings(findings) {
+    const wrap = document.getElementById('findingsWrap');
+    if (!findings.length) { wrap.innerHTML = '<div class="alert alert-success">' + t('noFindings') + '</div>'; return; }
+    wrap.innerHTML = findings.map((f, i) => {
+        const title = state.lang === 'ar' ? f.title_ar : f.title_en;
+        const desc = state.lang === 'ar' ? f.desc_ar : f.desc_en;
+        const sev = f.severity || 'low';
+        const sevLabel = sev === 'high' ? t('sevHigh') : (sev === 'medium' ? t('sevMedium') : t('sevLow'));
+        return '<div class="card finding-card sev-' + sev + ' mb-3">' +
+            '<div class="p-3 finding-head" onclick="toggleFinding(' + i + ')">' +
+            '<div class="d-flex justify-content-between align-items-center flex-wrap gap-2">' +
+            '<div><span class="badge sev-badge-' + sev + ' me-2">' + sevLabel + '</span>' +
+            '<span class="fw-bold">' + escapeHtml(title) + '</span></div>' +
+            '<div class="text-muted small"><i class="fa-solid fa-list-ol me-1"></i>' + t('countLbl') + ': <b>' + f.count + '</b> ' +
+            '<i class="fa-solid fa-chevron-down ms-2" id="chev-' + i + '"></i></div></div>' +
+            '<div class="text-muted small mt-1">' + escapeHtml(desc || '') + '</div>' +
+            '<div class="small mt-1"><span class="badge bg-light text-dark border"><i class="fa-solid fa-book me-1"></i>' + escapeHtml(f.standard || '') + '</span></div>' +
+            '</div>' +
+            '<div class="px-3 pb-3" id="items-' + i + '" style="display:none;">' + renderFindingTable(f.items) + '</div>' +
+            '</div>';
+    }).join('');
+}
+function toggleFinding(i) {
+    const el = document.getElementById('items-' + i);
+    const chev = document.getElementById('chev-' + i);
+    if (!el) return;
+    const show = el.style.display === 'none';
+    el.style.display = show ? 'block' : 'none';
+    if (chev) chev.className = (show ? 'fa-solid fa-chevron-up' : 'fa-solid fa-chevron-down') + ' ms-2';
+}
+
+/* =========================================================================
+   Export
+   ========================================================================= */
+async function exportReport() {
+    if (!state.reportId) { alert(t('errNoReport')); return; }
+    try {
+        const res = await fetch(API_BASE + '/export/', {
+            method: 'POST', headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ report_id: state.reportId, language: state.lang })
+        });
+        if (!res.ok) { alert(t('errServer')); return; }
+        const blob = await res.blob();
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url; a.download = 'audit_report.html';
+        document.body.appendChild(a); a.click(); a.remove();
+        URL.revokeObjectURL(url);
+    } catch (e) { alert(t('errServer')); }
+}
+
+/* =========================================================================
+   Markdown mini-renderer
+   ========================================================================= */
+function mdToHtml(md) {
+    let html = escapeHtml(md);
+    html = html.replace(/^###\s+(.*)$/gm, '<h3>$1</h3>');
+    html = html.replace(/^##\s+(.*)$/gm, '<h2>$1</h2>');
+    html = html.replace(/^#\s+(.*)$/gm, '<h2>$1</h2>');
+    html = html.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+    html = html.replace(/^\s*[-*]\s+(.*)$/gm, '<li>$1</li>');
+    html = html.replace(/(<li>[\s\S]*?<\/li>)/g, '<ul>$1</ul>');
+    html = html.replace(/\n{2,}/g, '</p><p>');
+    return '<p>' + html + '</p>';
+}
+
+/* =========================================================================
+   Streaming helper (shared by analysis & chat)
+   ========================================================================= */
+async function streamOllama(endpoint, payload, handlers) {
+    try {
+        const res = await fetch(API_BASE + endpoint, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
+        if ((res.headers.get('content-type') || '').includes('application/json')) {
+            const data = await res.json();
+            handlers.onError((data.error || '') + (data.detail ? ' — ' + data.detail : ''));
+            return;
+        }
+        const reader = res.body.getReader();
+        const decoder = new TextDecoder();
+        let buf = '';
+        while (true) {
+            const { value, done } = await reader.read();
+            if (done) break;
+            buf += decoder.decode(value, { stream: true });
+            let idx;
+            while ((idx = buf.indexOf('\n')) >= 0) {
+                const line = buf.slice(0, idx).trim();
+                buf = buf.slice(idx + 1);
+                if (!line) continue;
+                let evt; try { evt = JSON.parse(line); } catch (e) { continue; }
+                if (evt.type === 'thinking') handlers.onThinking(evt.text || '');
+                else if (evt.type === 'content') handlers.onContent(evt.text || '');
+                else if (evt.type === 'error') handlers.onError(evt.message || '');
+            }
+        }
+        handlers.onDone();
+    } catch (e) { handlers.onError(t('errServer')); }
+}
+
+/* =========================================================================
+   AI analysis
+   ========================================================================= */
+async function runAI() {
+    if (!state.reportId) { alert(t('errNoFileAI')); showView('upload'); return; }
+    const out = document.getElementById('aiOutput');
+    const thinkWrap = document.getElementById('aiThinking');
+    const thinkText = document.getElementById('aiThinkingText');
+    const btn = document.getElementById('aiRunBtn');
+    out.style.display = 'block';
+    out.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin me-2"></i>' + t('aiAnalyzing');
+    thinkWrap.style.display = 'none'; thinkText.textContent = '';
+    btn.disabled = true;
+    let content = '', lastRender = 0;
+    const payload = {
+        language: document.getElementById('aiLang').value,
+        model: document.getElementById('aiModel').value || state.config.model,
+        ollama_url: state.config.ollama_url,
+        report_id: state.reportId,
+    };
+    await streamOllama('/analyze/', payload, {
+        onThinking: (txt) => { thinkWrap.style.display = 'block'; thinkText.textContent += txt; },
+        onContent: (txt) => {
+            content += txt;
+            const now = Date.now();
+            if (now - lastRender > 120) { out.innerHTML = mdToHtml(content); lastRender = now; }
+        },
+        onError: (msg) => { out.innerHTML = '<span class="text-danger">' + t('errAI') + escapeHtml(msg) + '</span>'; },
+        onDone: () => {
+            if (content) out.innerHTML = mdToHtml(content);
+            else if (!out.innerHTML.includes('text-danger')) out.innerHTML = '<span class="text-warning">' + t('errAI') + 'empty_response</span>';
+            btn.disabled = false;
+        }
+    });
+    btn.disabled = false;
+}
+
+/* =========================================================================
+   Chat
+   ========================================================================= */
+function renderChat() {
+    const box = document.getElementById('chatBox');
+    if (!state.chat.length) { box.innerHTML = '<div class="text-muted small text-center mt-4">' + escapeHtml(t('chatHint')) + '</div>'; return; }
+    box.innerHTML = state.chat.map(m =>
+        '<div class="msg ' + (m.role === 'user' ? 'user' : 'assistant') + '">' +
+        (m.role === 'user' ? escapeHtml(m.content) : mdToHtml(m.content || '')) + '</div>').join('');
+    box.scrollTop = box.scrollHeight;
+}
+async function sendChat() {
+    if (!state.reportId) { alert(t('errNoReport')); showView('upload'); return; }
+    const input = document.getElementById('chatInput');
+    const q = input.value.trim();
+    if (!q) return;
+    input.value = '';
+    state.chat.push({ role: 'user', content: q });
+    renderChat();
+    const assistantIdx = state.chat.length;
+    state.chat.push({ role: 'assistant', content: '' });
+    renderChat();
+    const box = document.getElementById('chatBox');
+    const sendBtn = document.getElementById('chatSend');
+    sendBtn.disabled = true;
+    const payload = {
+        question: q,
+        language: state.lang,
+        model: document.getElementById('aiModel').value || state.config.model,
+        ollama_url: state.config.ollama_url,
+        report_id: state.reportId,
+        history: state.chat.slice(0, assistantIdx),
+    };
+    let content = '', lastRender = 0;
+    await streamOllama('/chat/', payload, {
+        onThinking: () => { },
+        onContent: (txt) => {
+            content += txt;
+            state.chat[assistantIdx].content = content;
+            const now = Date.now();
+            if (now - lastRender > 120) { renderChat(); lastRender = now; }
+        },
+        onError: (msg) => { state.chat[assistantIdx].content += '\n⚠️ ' + msg; renderChat(); },
+        onDone: () => { state.chat[assistantIdx].content = content || '—'; renderChat(); }
+    });
+    sendBtn.disabled = false;
+    box.scrollTop = box.scrollHeight;
+}
+document.getElementById('chatInput').addEventListener('keydown', e => { if (e.key === 'Enter') sendChat(); });
+
+/* =========================================================================
+   Server connectivity (auto-reconnect)
+   ========================================================================= */
+const FAILS_BEFORE_BANNER = 3;
+let serverOnline = null, serverFails = 0;
+function logEvent(type, details) {
+    try {
+        fetch(API_BASE + '/state/event', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ type, details: details || {} }), keepalive: true }).catch(() => { });
+    } catch (e) { }
+}
+function handleServer(ok) {
+    const changed = serverOnline !== ok;
+    serverOnline = ok;
+    const banner = document.getElementById('offlineBanner');
+    if (banner) banner.classList.toggle('d-none', !(!ok && serverFails >= FAILS_BEFORE_BANNER));
+    if (changed && ok) { loadSettings(); logEvent('client_connected', { protocol: location.protocol }); }
+    return ok;
+}
+async function pingServer() {
+    let ok = false;
+    try { const r = await fetch(API_BASE + '/health', { cache: 'no-store' }); ok = r.ok; } catch (e) { ok = false; }
+    if (ok) serverFails = 0; else serverFails++;
+    return handleServer(ok);
+}
+
+/* =========================================================================
+   Init
+   ========================================================================= */
+document.getElementById('brandLogo').src = API_BASE + '/logo';
+state.lang = localStorage.getItem('audit_lang') || 'ar';
+applyLanguage();
+pingServer();
+setInterval(pingServer, 5000);
+</script>
+</body>
+</html>

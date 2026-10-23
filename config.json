@@ -1,0 +1,10 @@
+{
+  "ollama_url": "http://127.0.0.1:11434",
+  "model": "qwen3:4b",
+  "language": "ar",
+  "max_ai_records": 40,
+  "temperature": 0.2,
+  "num_predict": 4096,
+  "request_timeout": 300,
+  "think": false
+}
